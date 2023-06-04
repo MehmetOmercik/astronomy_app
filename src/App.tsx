@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { getBodies } from "./Components/utils/http/http";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Home } from "./Components/pages/indexPg";
 
 function App() {
   const [planets, setPlanets] = useState(["default"]);
@@ -15,7 +17,9 @@ function App() {
         <li key={index}>{planet}</li>
       ))}
       <button onClick={handleButton}>Click Here to activate API</button>
-      <h1>hello</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   );
 }
