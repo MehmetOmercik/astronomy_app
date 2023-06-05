@@ -6,7 +6,10 @@
  * @returns {object}
  */
 
-export const options = (method: string, { authString }: object): object => {
+export const options = (
+  method: string,
+  { payload, authString }: { payload?: object; authString: string }
+): object => {
   return {
     method: method,
     headers: {
@@ -14,6 +17,9 @@ export const options = (method: string, { authString }: object): object => {
         Authorization: `Basic ${authString}`,
       }),
     },
+    ...(payload && {
+      body: payload,
+    }),
   };
 };
 
