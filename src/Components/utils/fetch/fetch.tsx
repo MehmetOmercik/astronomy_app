@@ -18,7 +18,7 @@ export const options = (
       }),
     },
     ...(payload && {
-      body: payload,
+      body: JSON.stringify(payload),
     }),
   };
 };
@@ -29,5 +29,7 @@ export async function fetchSimple(path: string, options = {}) {
     return response.json();
   } else {
     console.error("Not Working");
+    console.log("path debuging: ", path);
+    console.log("options debuging: ", options);
   }
 }

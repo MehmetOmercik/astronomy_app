@@ -7,3 +7,9 @@ export const authString = btoa(`${ASTRONOMY_APPLICATION_ID}:${ASTRONOMY_APPLICAT
 export const BODIES = `${ASTRONOMY_ENDPOINT}/bodies`;
 
 export const POSITIONS = `${BODIES}/positions`;
+
+export const STUDIO = `${ASTRONOMY_ENDPOINT}/studio`;
+
+export const STAR_CHART = `${STUDIO}/star-chart/`;
+
+export const MOON_PHASE = `${STUDIO}/moon-phase/`;

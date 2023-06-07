@@ -1,4 +1,4 @@
-import { BODIES, POSITIONS, authString } from "../api/api";
+import { BODIES, MOON_PHASE, POSITIONS, STAR_CHART, authString } from "../api/api";
 import { options, fetchSimple } from "../fetch/fetch";
 
 /**
@@ -57,4 +57,58 @@ export const getBodyPosition = async (
     `${POSITIONS}/${body}?latitude=${latitude}&longitude=${longitude}&elevation=${elevation}&from_date=${fromDate}&to_date=${toDate}&time=${time}`,
     options("GET", { authString })
   );
+};
+
+type viewOption = "constellation" | "area";
+type starChartObject = {
+  style?: string;
+  observer: {
+    latitude: number;
+    longitude: number;
+    date: string;
+  };
+  view: {
+    type: viewOption;
+    parameters: {
+      // TODO Get this parameter working so that TS enforces the fact that atleast one option in the parameters is required!
+      [key in viewOption]?: string;
+    };
+  };
+};
+
+/**
+ * Fetches a star chart of a certain kind depending on what has been posted through the body
+ * @param payload
+ * @returns {Promise}
+ */
+export const getStarChart = async (payload: starChartObject): Promise<any> => {
+  return await fetchSimple(STAR_CHART, options("POST", { authString, payload }));
+};
+
+interface MoonPhaseObject {
+  format?: "png" | "svg";
+  style: {
+    moonStyle: "default" | "sketch" | "shaded";
+    backgroundStyle?: "stars" | "solid";
+    backgroundColor?: string;
+    headingColor?: string;
+    textColor?: string;
+  };
+  observer: {
+    latitude: number;
+    longitude: number;
+    date: string;
+  };
+  view: {
+    type: "portrait-simple" | "landscape-simple";
+    orientation: "north-up" | "south-up";
+  };
+}
+/**
+ * Fetches a moon phase image of a certain kind depending on what has been posted through the body
+ * @param payload
+ * @returns {Promise}
+ */
+export const getMoonPhase = async (payload: MoonPhaseObject): Promise<any> => {
+  return await fetchSimple(MOON_PHASE, options("POST", { authString, payload }));
 };
