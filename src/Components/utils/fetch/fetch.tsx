@@ -24,12 +24,15 @@ export const options = (
 };
 
 export async function fetchSimple(path: string, options = {}) {
-  const response = await fetch(path, { ...options });
-  if (response.ok) {
+  try {
+    const response = await fetch(path, { ...options });
+    if (!response.ok) {
+      console.log("path debuging: ", path);
+      console.log("options debuging: ", options);
+      throw new Error("Failed to fetch data");
+    }
     return response.json();
-  } else {
-    console.error("Not Working");
-    console.log("path debuging: ", path);
-    console.log("options debuging: ", options);
+  } catch (error) {
+    console.error("Error: ", (error as Error).message);
   }
 }

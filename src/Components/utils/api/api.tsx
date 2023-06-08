@@ -13,3 +13,5 @@ export const STUDIO = `${ASTRONOMY_ENDPOINT}/studio`;
 export const STAR_CHART = `${STUDIO}/star-chart/`;
 
 export const MOON_PHASE = `${STUDIO}/moon-phase/`;
+
+export const SEARCH = `${ASTRONOMY_ENDPOINT}/search`;

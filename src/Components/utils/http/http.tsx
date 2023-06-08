@@ -1,4 +1,4 @@
-import { BODIES, MOON_PHASE, POSITIONS, STAR_CHART, authString } from "../api/api";
+import { BODIES, MOON_PHASE, POSITIONS, SEARCH, STAR_CHART, authString } from "../api/api";
 import { options, fetchSimple } from "../fetch/fetch";
 
 /**
@@ -111,4 +111,24 @@ interface MoonPhaseObject {
  */
 export const getMoonPhase = async (payload: MoonPhaseObject): Promise<any> => {
   return await fetchSimple(MOON_PHASE, options("POST", { authString, payload }));
+};
+
+/**
+ * Allows you to search the API's catalogue for objects
+ * @param term
+ * @returns {Promise<any>}
+ */
+export const getSearch = async (
+  term: string
+  // match_type?: "fuzzy" | "exact",
+  // ra?: number,
+  // dec?: number,
+  // limit: number,
+  // offset: number,
+  // order_by: "name"
+): Promise<any> => {
+  return await fetchSimple(
+    `${SEARCH}/?term=${term}&limit=5&order_by=name`,
+    options("GET", { authString })
+  );
 };
