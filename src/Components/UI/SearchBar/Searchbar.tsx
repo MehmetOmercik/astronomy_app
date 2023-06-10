@@ -1,7 +1,7 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { getSearch } from "../../utils/http/http";
 
-export const SearchBar = () => {
+export const SearchBar: FC = () => {
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {

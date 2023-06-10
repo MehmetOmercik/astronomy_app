@@ -7,35 +7,11 @@ import {
   getMoonPhase,
 } from "./Components/utils/http/http";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Home } from "./Components/pages/indexPg";
+import { HomePage, SolarSystemPage, CelestialBodyPage } from "./Components/pages/indexPg";
+import { NavBar } from "./Components/UI/indexUI";
 
-function App() {
-  const celestialBodies = [
-    "sun",
-    "moon",
-    "mercury",
-    "venus",
-    "earth",
-    "mars",
-    "jupiter",
-    "saturn",
-    "uranus",
-    "neptune",
-    "pluto",
-  ];
-
+const App = () => {
   const handleButton = async () => {
-    // const bodyPosition = await getBodyPosition(
-    //   "earth",
-    //   51.51,
-    //   0.13,
-    //   11,
-    //   "2017-12-20",
-    //   "2017-12-20",
-    //   "08:00:00"
-    // );
-    // console.log(bodyPosition);
-
     const starChartObject = {
       style: "default",
       observer: {
@@ -79,15 +55,16 @@ function App() {
   };
   return (
     <>
-      {celestialBodies.map((planet, index) => (
-        <li key={index}>{planet}</li>
-      ))}
+      <NavBar />
       <button onClick={handleButton}>Click Here to activate API</button>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/solarSystem" element={<SolarSystemPage />} />
+        <Route path="/sun" element={<CelestialBodyPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
-}
+};
 
 export default App;
