@@ -19,7 +19,7 @@ export const getBodies = async (): Promise<any> => {
  * @param time
  * @returns {Promise}
  */
-export const getAllBodyPositions = async (
+export const getAllBodyDetails = async (
   latitude: number,
   longitude: number,
   elevation: number,
@@ -44,7 +44,7 @@ export const getAllBodyPositions = async (
  * @param time
  * @returns {Promise}
  */
-export const getBodyPosition = async (
+export const getBodyDetails = async (
   body: string,
   latitude: number,
   longitude: number,

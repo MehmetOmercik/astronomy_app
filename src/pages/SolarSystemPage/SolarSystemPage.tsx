@@ -7,13 +7,13 @@ import {
   updateData,
 } from "../../Features/SolarSystem/SolarSystemSlice";
 import SolarSystemInfo from "./SolarSystemInfo.json";
-import { getBodyPosition } from "../../utils/http/http";
+import { getBodyDetails } from "../../utils/http/http";
 
 export const SolarSystemPage: FC = () => {
   const dispatch = useAppDispatch();
   const handleClick = async (value: string, title: string, description: string) => {
     try {
-      const bodyPosition = await getBodyPosition(
+      const bodyPosition = await getBodyDetails(
         value,
         51.51,
         0.13,
