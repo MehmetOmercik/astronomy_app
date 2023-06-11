@@ -1,18 +1,10 @@
 import React, { useState } from "react";
-import {
-  getBodies,
-  getAllBodyPositions,
-  getBodyPosition,
-  getStarChart,
-  getMoonPhase,
-} from "./utils/http/http";
+import { getStarChart, getMoonPhase } from "./utils/http/http";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { HomePage, SolarSystemPage, SolarSystemBodyPage } from "./pages/indexPg";
 import { NavBar } from "./Components/UI/indexUI";
 
 const App = () => {
-  // const [path, setPath] = useState("/hahaha");
-
   const handleButton = async () => {
     const starChartObject = {
       style: "default",

@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { LinkSimple } from "../../Components/UI/Buttons/Link/Link";
 import { useAppDispatch } from "../../App/hooks";
 import {
@@ -8,6 +8,7 @@ import {
 } from "../../Features/SolarSystem/SolarSystemSlice";
 import SolarSystemInfo from "./SolarSystemInfo.json";
 import { getBodyDetails } from "../../utils/http/http";
+// import { useGetBodyDetails } from "../../hooks/hooks";
 
 export const SolarSystemPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -36,10 +37,6 @@ export const SolarSystemPage: FC = () => {
     }
   };
   const celestialBodies = SolarSystemInfo;
-
-  // useEffect(() => {
-  //   updatePath();
-  // });
 
   return (
     <div className="flex">
