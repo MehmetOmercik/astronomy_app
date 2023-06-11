@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "value": "sun",
+    "title": "Title for da sunnnnnnn!!!!!",
+    "description": "sun description"
+  },
+  {
+    "id": 2,
+    "value": "moon",
+    "title": "This is the title for da mooooooonnnn!!!!!",
+    "description": "moon description"
+  },
+  {
+    "id": 3,
+    "value": "mercury",
+    "title": "Title for mercury!!!!!",
+    "description": "mercury description"
+  },
+  {
+    "id": 4,
+    "value": "venus",
+    "title": "Title for venus ahhahha!!!!!",
+    "description": "venus description"
+  },
+  {
+    "id": 5,
+    "value": "mars",
+    "title": "Title for mars!!!!!",
+    "description": "mars description hahahhha"
+  },
+  {
+    "id": 6,
+    "value": "jupiter",
+    "title": "Title for jupiter!!!!!",
+    "description": "jupiter description"
+  },
+  {
+    "id": 7,
+    "value": "saturn",
+    "title": "Title for saturn!!!!!",
+    "description": "saturn description"
+  },
+  {
+    "id": 8,
+    "value": "uranus",
+    "title": "Title for uranus!!!!!",
+    "description": "uranus description"
+  },
+  {
+    "id": 9,
+    "value": "neptune",
+    "title": "Title for neptune!!!!!",
+    "description": "neptune description"
+  },
+  {
+    "id": 10,
+    "value": "pluto",
+    "title": "Title for pluto {aka fake planet}!!!!!",
+    "description": "pluto description"
+  }
+]

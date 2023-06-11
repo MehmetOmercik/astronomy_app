@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import globalReducer from "../Features/Global/GlobalSlice";
+import solarSystemReducer from "../Features/SolarSystem/SolarSystemSlice";
 
 export const store = configureStore({
   reducer: {
-    global: globalReducer,
+    solarSystem: solarSystemReducer,
   },
 });
 

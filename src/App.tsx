@@ -7,10 +7,19 @@ import {
   getMoonPhase,
 } from "./Components/utils/http/http";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { HomePage, SolarSystemPage, CelestialBodyPage } from "./Components/pages/indexPg";
+import { HomePage, SolarSystemPage, SolarSystemBodyPage } from "./Components/pages/indexPg";
 import { NavBar } from "./Components/UI/indexUI";
+import { useAppSelector } from "./App/hooks";
+import { useSelector } from "react-redux";
+import type { TypedUseSelectorHook } from "react-redux";
+import type { RootState, AppDispatch } from "./App/store";
 
 const App = () => {
+  // const [path, setPath] = useState("/hahaha");
+  const title = useAppSelector((state) => state.solarSystem.title);
+  const description = useAppSelector((state) => state.solarSystem.description);
+  console.log("title: ", title);
+  console.log("description: ", description);
   const handleButton = async () => {
     const starChartObject = {
       style: "default",
@@ -48,10 +57,10 @@ const App = () => {
       },
     };
 
-    const starChart = await getStarChart(starChartObject);
-    const moonPhase = await getMoonPhase(moonPhaseObject);
-    console.log(starChart.data.imageUrl);
-    console.log(moonPhase.data.imageUrl);
+    // const starChart = await getStarChart(starChartObject);
+    // const moonPhase = await getMoonPhase(moonPhaseObject);
+    // console.log(starChart.data.imageUrl);
+    // console.log(moonPhase.data.imageUrl);
   };
   return (
     <>
@@ -60,7 +69,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/solarSystem" element={<SolarSystemPage />} />
-        <Route path="/sun" element={<CelestialBodyPage />} />
+        <Route
+          path={`/solarSystem/:id`}
+          element={<SolarSystemBodyPage title={title} description={description} />}
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
