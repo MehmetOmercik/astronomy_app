@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useState } from "react";
-import { getSearch } from "../../utils/http/http";
+import { getSearch } from "../../../utils/http/http";
 
 export const SearchBar: FC = () => {
   const [searchValue, setSearchValue] = useState("");

@@ -5,21 +5,14 @@ import {
   getBodyPosition,
   getStarChart,
   getMoonPhase,
-} from "./Components/utils/http/http";
+} from "./utils/http/http";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { HomePage, SolarSystemPage, SolarSystemBodyPage } from "./Components/pages/indexPg";
+import { HomePage, SolarSystemPage, SolarSystemBodyPage } from "./pages/indexPg";
 import { NavBar } from "./Components/UI/indexUI";
-import { useAppSelector } from "./App/hooks";
-import { useSelector } from "react-redux";
-import type { TypedUseSelectorHook } from "react-redux";
-import type { RootState, AppDispatch } from "./App/store";
 
 const App = () => {
   // const [path, setPath] = useState("/hahaha");
-  const title = useAppSelector((state) => state.solarSystem.title);
-  const description = useAppSelector((state) => state.solarSystem.description);
-  console.log("title: ", title);
-  console.log("description: ", description);
+
   const handleButton = async () => {
     const starChartObject = {
       style: "default",
@@ -65,14 +58,11 @@ const App = () => {
   return (
     <>
       <NavBar />
-      <button onClick={handleButton}>Click Here to activate API</button>
+      {/* <button onClick={handleButton}>Click Here to activate API</button> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/solarSystem" element={<SolarSystemPage />} />
-        <Route
-          path={`/solarSystem/:id`}
-          element={<SolarSystemBodyPage title={title} description={description} />}
-        />
+        <Route path={`/solarSystem/:id`} element={<SolarSystemBodyPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
