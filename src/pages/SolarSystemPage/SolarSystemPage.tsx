@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../App/hooks";
 import {
   updateTitle,
   updateDescription,
-  updateData,
+  updateTable,
 } from "../../Features/SolarSystem/SolarSystemSlice";
 import SolarSystemInfo from "./SolarSystemInfo.json";
 import { getBodyDetails } from "../../utils/http/http";
@@ -20,13 +20,13 @@ export const SolarSystemPage: FC = () => {
         0.13,
         11,
         "2017-12-20",
-        "2017-12-20",
+        "2017-12-21",
         "08:00:00"
       );
-      console.log(bodyPosition);
+      // console.log(bodyPosition);
 
       //Dispatches the new title, description and data for the SolarSystemBodyPage
-      dispatch(updateData(bodyPosition));
+      dispatch(updateTable(bodyPosition.data.table));
       dispatch(updateTitle(title));
       dispatch(updateDescription(description));
     } catch (error) {
