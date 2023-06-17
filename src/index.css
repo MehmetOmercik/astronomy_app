@@ -27,5 +27,15 @@ body {
 /*Table classes*/
 .solar-system-table-header {
   border: 1px rgb(230, 81, 81) solid;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
+}
+
+table {
+  display: table;
+}
+table tr {
+  display: table-cell;
+}
+table tr td {
+  display: block;
 }
