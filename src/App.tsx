@@ -6,21 +6,6 @@ import { NavBar } from "./Components/UI/indexUI";
 
 const App = () => {
   const handleButton = async () => {
-    const starChartObject = {
-      style: "default",
-      observer: {
-        latitude: 51.51,
-        longitude: 0.13,
-        date: "2023-06-04",
-      },
-      view: {
-        type: "constellation" as const,
-        parameters: {
-          constellation: "ori",
-        },
-      },
-    };
-
     // use as const to fix String/Literal type error issue
     const moonPhaseObject = {
       format: "png" as const,
@@ -42,9 +27,8 @@ const App = () => {
       },
     };
 
-    // const starChart = await getStarChart(starChartObject);
+   
     // const moonPhase = await getMoonPhase(moonPhaseObject);
-    // console.log(starChart.data.imageUrl);
     // console.log(moonPhase.data.imageUrl);
   };
   return (
