@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-export const SolarSystemBodyTable = ({ headers, rows }) => {
+export const SolarSystemBodyTable = ({ headers, rows }: { headers: []; rows: [] }) => {
   return (
     <table className="solar-system-table-header">
       <thead className="">
@@ -8,7 +8,7 @@ export const SolarSystemBodyTable = ({ headers, rows }) => {
           <th className="w-full"></th>
         </tr>
         {headers.map((header: ReactNode, index: number) => (
-          <tr className="solar-system-table-header">
+          <tr key={index} className="solar-system-table-header">
             <th className="">{header}</th>
           </tr>
         ))}
@@ -21,10 +21,10 @@ export const SolarSystemBodyTable = ({ headers, rows }) => {
           <td className="solar-system-table-header">Magnitude</td>
         </tr>
         {rows.map(
-          (row, index: number) => (
+          (row: object, index: number) => (
             console.log(row),
             (
-              <tr>
+              <tr key={index}>
                 <td className="solar-system-table-header">
                   {row.distance.fromEarth.au} au / {row.distance.fromEarth.km} km
                 </td>

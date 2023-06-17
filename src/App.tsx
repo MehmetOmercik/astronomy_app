@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getStarChart, getMoonPhase } from "./utils/http/http";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { HomePage, SolarSystemPage, SolarSystemBodyPage } from "./pages/indexPg";
+import { HomePage, SolarSystemPage, SolarSystemBodyPage, StarChartPage } from "./pages/indexPg";
 import { NavBar } from "./Components/UI/indexUI";
 
 const App = () => {
@@ -55,6 +55,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/solarSystem" element={<SolarSystemPage />} />
         <Route path={`/solarSystem/:id`} element={<SolarSystemBodyPage />} />
+        <Route path="/starChart" element={<StarChartPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>

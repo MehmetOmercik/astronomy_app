@@ -8,9 +8,9 @@ interface LinkSimpleObject {
   className?: string;
 }
 
-export const LinkSimple: FC<LinkSimpleObject> = ({ value, to, onClick, className }) => {
+export const LinkSimple: FC<LinkSimpleObject> = ({ value, to, ...props }) => {
   return (
-    <Link to={to} className={className} onClick={onClick}>
+    <Link to={to} {...props}>
       {value}
     </Link>
   );
