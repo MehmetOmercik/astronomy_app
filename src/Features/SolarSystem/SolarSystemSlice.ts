@@ -1,11 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface initialStateObject {
+  loading: boolean;
+  loaded: boolean;
+  error: boolean;
+  planet: string;
   title: string;
   description: string;
   table: object;
 }
 const initialState = {
+  loading: false,
+  loaded: false,
+  error: false,
+  planet: "earth",
   title: "default title",
   description: "default description",
   table: {
@@ -79,6 +87,15 @@ const solarSystemSlice = createSlice({
   name: "solarSystem",
   initialState,
   reducers: {
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.loading = action.payload;
+    },
+    setLoaded(state, action: PayloadAction<boolean>) {
+      state.loaded = action.payload;
+    },
+    setError(state, action: PayloadAction<boolean>) {
+      state.error = action.payload;
+    },
     updateTitle(state, action: PayloadAction<string>) {
       state.title = action.payload;
     },
@@ -91,5 +108,6 @@ const solarSystemSlice = createSlice({
   },
 });
 
-export const { updateTitle, updateDescription, updateTable } = solarSystemSlice.actions;
+export const { setLoading, setLoaded, setError, updateTitle, updateDescription, updateTable } =
+  solarSystemSlice.actions;
 export default solarSystemSlice.reducer;
