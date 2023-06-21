@@ -1,1 +1,1 @@
-export { useGetBodyDetails } from "./useGetBodyDetails/useGetBodyDetails";
+export { useGetSolarSystemBody } from "./useGetSolarSystemBody/useGetSolarSystemBody";
