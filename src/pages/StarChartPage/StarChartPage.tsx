@@ -8,12 +8,12 @@ import "react-datepicker/dist/react-datepicker.css";
 export const StarChartPage: FC = () => {
   const [latitude, setLatitude] = useState("51.51");
   const [longitude, setLongitude] = useState("0.13");
+  const [startDate, setStartDate] = useState(new Date());
   const [style, setStyle] = useState("Default");
   const [type, setType] = useState("Constellation");
   const [conste, setConste] = useState("Andromeda");
   const [consteID, setConsteID] = useState("and");
   const [image, setImage] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
@@ -61,8 +61,8 @@ export const StarChartPage: FC = () => {
     }
   };
   return (
-    <section>
-      <form className="flex flex-col items-start" onSubmit={handleStarChart}>
+    <section className="flex max-w-[80vw]">
+      <form className="mr-[200px] flex flex-col items-start" onSubmit={handleStarChart}>
         <label>Latitude</label>
         <input
           value={latitude}
@@ -106,9 +106,11 @@ export const StarChartPage: FC = () => {
           click here for star chart
         </button>
       </form>
-      {loading && <h1>Loading, please wait...</h1>}
-      {loaded && <img className="absolute z-10" src={image} />}
-      {error && <p>ERROR: NOT LOADING</p>}
+      <div>
+        {loading && <h1>Loading, please wait...</h1>}
+        {loaded && <img className="absolute z-10" src={image} />}
+        {error && <p>ERROR: NOT LOADING</p>}
+      </div>
     </section>
   );
 };

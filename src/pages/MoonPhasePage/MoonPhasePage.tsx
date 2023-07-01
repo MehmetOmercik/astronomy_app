@@ -1,13 +1,22 @@
 import { FC, useState } from "react";
 import { getMoonPhase } from "../../utils/http/http";
+import { DropdownWithLabel } from "../../Components/UI/indexUI";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const MoonPhasePage: FC = () => {
+  const [latitude, setLatitude] = useState("51.51");
+  const [longitude, setLongitude] = useState("0.13");
+  const [startDate, setStartDate] = useState(new Date());
+  const [moonStyle, setMoonStyle] = useState("Default");
   const [moonPhaseImage, setMoonPhaseImage] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleMoonPhaseButton = async () => {
+  const handleMoonPhase = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setLoaded(false);
     setError(false);
@@ -15,16 +24,16 @@ export const MoonPhasePage: FC = () => {
     const moonPhaseObject = {
       format: "png" as const,
       style: {
-        moonStyle: "sketch" as const,
-        // "backgroundStyle": "stars",
-        // "backgroundColor": "red",
-        // "headingColor": "white",
-        // "textColor": "red"
+        moonStyle: moonStyle.toLowerCase() as "default" | "sketch" | "shaded",
+        // backgroundStyle: "stars",
+        // backgroundColor: "red",
+        headingColor: "white",
+        textColor: "white",
       },
       observer: {
-        latitude: 6.56774,
-        longitude: 79.88956,
-        date: "2020-11-01",
+        latitude: +latitude,
+        longitude: +longitude,
+        date: startDate.toISOString(),
       },
       view: {
         type: "portrait-simple" as const,
@@ -46,12 +55,45 @@ export const MoonPhasePage: FC = () => {
   return (
     <>
       <p>Moon Phase Page</p>
-      <button className="rounded-xl bg-green-600 p-2" onClick={() => handleMoonPhaseButton()}>
-        Button
-      </button>
-      {loading && <h1>Loading, please wait...</h1>}
-      {loaded && <img className="absolute z-10" src={moonPhaseImage} />}
-      {error && <p>ERROR: NOT LOADING</p>}
+      <section className="flex max-w-[80vw] justify-between">
+        <form onSubmit={handleMoonPhase} className="flex flex-col items-start">
+          <label>Latitude</label>
+          <input
+            value={latitude}
+            onChange={(e) => {
+              setLatitude(e.target.value);
+            }}
+          />
+          <label>Longitude</label>
+          <input
+            value={longitude}
+            onChange={(e) => {
+              setLongitude(e.target.value);
+            }}
+          />
+          <label>Date</label>
+          <DatePicker
+            // dateFormat="Pp"
+            // showTimeSelect
+            dateFormat="dd/MM/yyyy"
+            selected={startDate}
+            onChange={(date: Date) => setStartDate(date)}
+          />
+          <DropdownWithLabel
+            label="Moon Style"
+            options={["Default", "Sketch", "Shaded"]}
+            onChange={setMoonStyle}
+          />
+          <button type="submit" className="rounded-xl bg-green-600 p-2">
+            Submit
+          </button>
+        </form>
+        <div>
+          {loading && <h1>Loading, please wait...</h1>}
+          {loaded && <img className="absolute z-10" src={moonPhaseImage} />}
+          {error && <p>ERROR: NOT LOADING</p>}
+        </div>
+      </section>
     </>
   );
 };
