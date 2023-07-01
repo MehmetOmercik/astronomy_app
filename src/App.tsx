@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { getStarChart, getMoonPhase } from "./utils/http/http";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { HomePage, SolarSystemPage, SolarSystemBodyPage, StarChartPage } from "./pages/indexPg";
 import { NavBar } from "./Components/UI/indexUI";
 
+import Particles from "react-particles";
+import type { Engine } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
+import particlesOptions from "./particles.json";
+import { ISourceOptions } from "tsparticles-engine";
+
 const App = () => {
+  const particlesInit = useCallback(async (engine: Engine) => {
+    await loadFull(engine);
+  }, []);
   const handleButton = async () => {
     // use as const to fix String/Literal type error issue
     const moonPhaseObject = {
@@ -27,13 +36,13 @@ const App = () => {
       },
     };
 
-   
     // const moonPhase = await getMoonPhase(moonPhaseObject);
     // console.log(moonPhase.data.imageUrl);
   };
   return (
     <>
       <NavBar />
+      <Particles options={particlesOptions as ISourceOptions} init={particlesInit} />
       {/* <button onClick={handleButton}>Click Here to activate API</button> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
