@@ -107,7 +107,7 @@ export const StarChartPage: FC = () => {
         </button>
       </form>
       {loading && <h1>Loading, please wait...</h1>}
-      {loaded && <img src={image} />}
+      {loaded && <img className="absolute z-10" src={image} />}
       {error && <p>ERROR: NOT LOADING</p>}
     </section>
   );
