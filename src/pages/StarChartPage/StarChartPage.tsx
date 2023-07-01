@@ -14,6 +14,9 @@ export const StarChartPage: FC = () => {
   const [consteID, setConsteID] = useState("and");
   const [image, setImage] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     starChartInfo.map(
@@ -28,6 +31,9 @@ export const StarChartPage: FC = () => {
 
   const handleStarChart = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setLoaded(false);
+    setError(false);
     const starChartObject = {
       style: style.toLowerCase(),
       observer: {
@@ -42,9 +48,17 @@ export const StarChartPage: FC = () => {
         },
       },
     };
-    const starChart = await getStarChart(starChartObject);
-    console.log(starChart.data.imageUrl);
-    setImage(starChart.data.imageUrl);
+    try {
+      const starChart = await getStarChart(starChartObject);
+      console.log(starChart.data.imageUrl);
+      setImage(starChart.data.imageUrl);
+      setLoading(false);
+      setLoaded(true);
+    } catch (error) {
+      console.log("Something went wrong with star chart call: ", error);
+      setLoading(false);
+      setError(true);
+    }
   };
   return (
     <section>
@@ -92,7 +106,9 @@ export const StarChartPage: FC = () => {
           click here for star chart
         </button>
       </form>
-      <img src={image} />
+      {loading && <h1>Loading, please wait...</h1>}
+      {loaded && <img src={image} />}
+      {error && <p>ERROR: NOT LOADING</p>}
     </section>
   );
 };
