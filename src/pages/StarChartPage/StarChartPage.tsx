@@ -1,5 +1,5 @@
 import { FC, ChangeEvent, useState, useEffect } from "react";
-import { getStarChart, getMoonPhase } from "../../utils/http/http";
+import { getStarChart } from "../../utils/http/http";
 import { DropdownWithLabel } from "../../Components/UI/indexUI";
 import starChartInfo from "./StarChartInfo.json";
 import DatePicker from "react-datepicker";
@@ -20,7 +20,7 @@ export const StarChartPage: FC = () => {
 
   useEffect(() => {
     starChartInfo.map(
-      (info, index) => {
+      (info) => {
         if (conste === info.name) {
           setConsteID(info.id);
         }
@@ -29,7 +29,7 @@ export const StarChartPage: FC = () => {
     );
   });
 
-  const handleStarChart = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleStarChart = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setLoaded(false);
@@ -95,7 +95,7 @@ export const StarChartPage: FC = () => {
 
         <DropdownWithLabel
           label={type}
-          options={starChartInfo.map((info, index) => info.name)}
+          options={starChartInfo.map((info) => info.name)}
           onChange={setConste}
         />
         <button

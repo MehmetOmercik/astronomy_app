@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, ChangeEvent, useState } from "react";
 import { getMoonPhase } from "../../utils/http/http";
 import { DropdownWithLabel } from "../../Components/UI/indexUI";
 import DatePicker from "react-datepicker";
@@ -15,16 +15,20 @@ export const MoonPhasePage: FC = () => {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleMoonPhase = async (e) => {
+  const handleMoonPhase = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setLoaded(false);
     setError(false);
     // use as const to fix String/Literal type error issue
+    console.log("latitude: ", Boolean(+latitude));
     const moonPhaseObject = {
       format: "png" as const,
       style: {
-        moonStyle: moonStyle.toLowerCase() as "default" | "sketch" | "shaded",
+        moonStyle: ["default", "sketch", "shaded"].includes(moonStyle.toLowerCase())
+          ? (moonStyle.toLowerCase() as "default" | "sketch" | "shaded")
+          : "default",
+
         // backgroundStyle: "stars",
         // backgroundColor: "red",
         headingColor: "white",

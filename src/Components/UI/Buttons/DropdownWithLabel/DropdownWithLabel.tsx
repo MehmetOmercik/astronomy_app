@@ -1,8 +1,9 @@
-import React, { FC, useState } from "react";
+import { FC, Dispatch, SetStateAction } from "react";
 
 interface DropdownWithLabelProps {
   label: string;
   options: string[];
+  onChange: Dispatch<SetStateAction<string>>;
 }
 export const DropdownWithLabel: FC<DropdownWithLabelProps> = ({ label, options, onChange }) => {
   return (

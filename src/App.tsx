@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import {
   HomePage,
@@ -23,7 +23,6 @@ const App = () => {
     <>
       <NavBar />
       <Particles options={particlesOptions as ISourceOptions} init={particlesInit} />
-      {/* <button onClick={handleButton}>Click Here to activate API</button> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/solarSystem" element={<SolarSystemPage />} />
