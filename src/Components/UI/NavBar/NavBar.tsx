@@ -3,12 +3,12 @@ import { LinkSimple } from "../indexUI";
 import { SearchBar } from "../indexUI";
 export const NavBar: FC = () => {
   return (
-    <nav className="flex items-start justify-between">
-      <div className="flex gap-2">
-        <LinkSimple value="Home" to="/" className="bg-red-500" />
-        <LinkSimple value="Solar System" to="/solarSystem" className="bg-red-500" />
-        <LinkSimple value="Star Chart" to="/starChart" className="bg-red-500" />
-        <LinkSimple value="Moon Phases" to="/moonPhase" className="bg-red-500" />
+    <nav className="flex items-start justify-between bg-gray-700 p-4">
+      <div className="flex gap-5">
+        <LinkSimple value="Home" to="/" className="navbar-button" />
+        <LinkSimple value="Solar System" to="/solarSystem" className="navbar-button" />
+        <LinkSimple value="Star Chart" to="/starChart" className="navbar-button" />
+        <LinkSimple value="Moon Phases" to="/moonPhase" className="navbar-button" />
       </div>
 
       <SearchBar />

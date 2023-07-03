@@ -39,3 +39,7 @@ table tr {
 table tr td {
   display: block;
 }
+
+.navbar-button {
+  @apply rounded-2xl bg-stone-600 px-2 py-1 hover:bg-stone-500;
+}

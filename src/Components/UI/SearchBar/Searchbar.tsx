@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState } from "react";
 import { getSearch } from "../../../utils/http/http";
+import { LinkSimple } from "../indexUI";
 
 interface SearchItemObject {
   id: string;
@@ -49,16 +50,27 @@ export const SearchBar: FC = () => {
   return (
     <div>
       <input
-        className="w-[220px]"
+        className="w-[220px] rounded-xl px-2 py-1"
         onChange={handleSearch}
         placeholder="Search"
         value={searchValue}
       />
       {searchValue && (
-        <fieldset className="fixed z-20 flex h-[120px] w-full flex-col bg-gray-500">
-          {loading && <option>Loading, Please Wait...</option>}
-          {loaded && searchList.map((search, index) => <option key={index}>{search}</option>)}
-          {error && <option>Error, something went wrong</option>}
+        <fieldset className="fixed top-[58px] z-20 flex w-[220px] flex-col rounded-xl bg-gray-600">
+          {loading && <option className="rounded-xl px-2 py-1">Loading, Please Wait...</option>}
+          {loaded && searchList?.length
+            ? searchList.map((search, index) => (
+                <LinkSimple
+                  // TODO change this to value to a dynamic link
+                  to="/"
+                  value={search}
+                  className="rounded-xl px-2 py-1 hover:bg-gray-500"
+                  key={index}
+                />
+              ))
+            : loaded && <option className="rounded-xl px-2 py-1">No results found</option>}
+
+          {error && <option className="rounded-xl px-2 py-1">Error, something went wrong</option>}
         </fieldset>
       )}
     </div>
