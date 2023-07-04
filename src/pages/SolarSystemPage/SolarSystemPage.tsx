@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { LinkSimple } from "../../Components/UI/Buttons/Link/Link";
-import { useAppDispatch } from "../../App/hooks";
+import { LinkSimple } from "@components/UI/Buttons/Link/Link";
+import { useAppDispatch } from "@app/hooks";
 import {
   setLoading,
   setLoaded,
@@ -8,12 +8,12 @@ import {
   updateTitle,
   updateDescription,
   updateTable,
-} from "../../Features/SolarSystem/SolarSystemSlice";
+} from "@features/SolarSystem/SolarSystemSlice";
 import SolarSystemInfo from "./SolarSystemInfo.json";
 import { getBodyDetails } from "../../utils/http/http";
 
-import { fetchSolarSystemBody } from "../../Features/SolarSystem/SolarSystemAction";
-import { useGetSolarSystemBody } from "../../hooks/hooks";
+import { fetchSolarSystemBody } from "@features/SolarSystem/SolarSystemAction";
+import { useGetSolarSystemBody } from "@hooks/hooks";
 
 export const SolarSystemPage: FC = () => {
   const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
 import { FC, ChangeEvent, useState, useEffect } from "react";
-import { getStarChart } from "../../utils/http/http";
-import { DropdownWithLabel } from "../../Components/UI/indexUI";
+import { getStarChart } from "@utils/http/http";
+import { DropdownWithLabel } from "@components/UI/indexUI";
 import starChartInfo from "./StarChartInfo.json";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useState } from "react";
-import { getSearch } from "../../../utils/http/http";
+import { getSearch } from "@utils/http/http";
 import { LinkSimple } from "../indexUI";
 
 interface SearchItemObject {

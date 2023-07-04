@@ -1,6 +1,6 @@
 import { FC, ChangeEvent, useState } from "react";
-import { getMoonPhase } from "../../utils/http/http";
-import { DropdownWithLabel } from "../../Components/UI/indexUI";
+import { getMoonPhase } from "@utils/http/http";
+import { DropdownWithLabel } from "@components/UI/indexUI";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 

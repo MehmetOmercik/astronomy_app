@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import solarSystemReducer from "../Features/SolarSystem/SolarSystemSlice";
+import solarSystemReducer from "@features/SolarSystem/SolarSystemSlice";
 
 export const store = configureStore({
   reducer: {
