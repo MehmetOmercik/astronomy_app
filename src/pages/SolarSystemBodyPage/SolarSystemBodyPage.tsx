@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useAppSelector } from "@app/hooks";
 import { SolarSystemBodyTable } from "@components/UI/indexUI";
-import { useGetSolarSystemBody } from "../../hooks/hooks";
 
 export const SolarSystemBodyPage: FC = () => {
   const {

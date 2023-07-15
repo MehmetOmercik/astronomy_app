@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+
+import searchReducer from "@features/Search/SearchSlice";
 import solarSystemReducer from "@features/SolarSystem/SolarSystemSlice";
 
 export const store = configureStore({
   reducer: {
+    search: searchReducer,
     solarSystem: solarSystemReducer,
   },
 });
