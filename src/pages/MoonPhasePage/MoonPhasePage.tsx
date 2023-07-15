@@ -20,8 +20,6 @@ export const MoonPhasePage: FC = () => {
     setLoading(true);
     setLoaded(false);
     setError(false);
-    // use as const to fix String/Literal type error issue
-    console.log("latitude: ", Boolean(+latitude));
     const moonPhaseObject = {
       format: "png" as const,
       style: {

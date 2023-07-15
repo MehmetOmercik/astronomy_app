@@ -122,7 +122,7 @@ export const StarChartPage: FC = () => {
           dateFormat="dd/MM/yyyy"
           selected={starChartData.startDate}
           onChange={(date: Date) =>
-            starChartDispatch({ type: "UPDATE", property: "date", newValue: date })
+            starChartDispatch({ type: "UPDATE", property: "startDate", newValue: date })
           }
         />
         <DropdownWithLabel
