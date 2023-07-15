@@ -2,7 +2,8 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchQuery: "",
-  searchList: [""],
+  searchList: [{}],
+  searchCurrent: [{}],
   searchState: "loading",
 };
 const searchSlice = createSlice({
@@ -12,8 +13,11 @@ const searchSlice = createSlice({
     setSearchQuery(state, action: PayloadAction<string>) {
       state.searchQuery = action.payload;
     },
-    setSearchList(state, action: PayloadAction<string[]>) {
+    setSearchList(state, action) {
       state.searchList = action.payload;
+    },
+    setSearchCurrent(state, action) {
+      state.searchCurrent = action.payload;
     },
     setSearchState(state, action: PayloadAction<"loading" | "loaded" | "error">) {
       state.searchState = action.payload;
@@ -21,5 +25,6 @@ const searchSlice = createSlice({
   },
 });
 
-export const { setSearchQuery, setSearchList, setSearchState } = searchSlice.actions;
+export const { setSearchQuery, setSearchList, setSearchCurrent, setSearchState } =
+  searchSlice.actions;
 export default searchSlice.reducer;

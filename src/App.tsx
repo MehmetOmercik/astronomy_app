@@ -8,7 +8,7 @@ import {
   MoonPhasePage,
   SearchPage,
 } from "./pages/indexPg";
-import { NavBar } from "./Components/UI/indexUI";
+import { NavBar } from "@components/UI/indexUI";
 
 import Particles from "react-particles";
 import type { Engine } from "tsparticles-engine";
@@ -30,7 +30,7 @@ const App = () => {
         <Route path={`/solarSystem/:id`} element={<SolarSystemBodyPage />} />
         <Route path="/starChart" element={<StarChartPage />} />
         <Route path="/moonPhase" element={<MoonPhasePage />} />
-        <Route path="/search/:id" element={<SearchPage />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>

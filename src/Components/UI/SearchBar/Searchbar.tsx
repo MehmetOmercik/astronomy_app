@@ -1,8 +1,13 @@
 import { ChangeEvent, FC, useState } from "react";
 import { getSearch } from "@utils/http/http";
-import { LinkSimple } from "../indexUI";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import { setSearchQuery, setSearchList, setSearchState } from "@/features/Search/SearchSlice";
+import {
+  setSearchQuery,
+  setSearchList,
+  setSearchCurrent,
+  setSearchState,
+} from "@/features/Search/SearchSlice";
+import { useNavigate } from "react-router-dom";
 
 interface SearchItemObject {
   id: string;
@@ -12,12 +17,9 @@ interface SearchItemObject {
 }
 
 export const SearchBar: FC = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { searchQuery, searchList, searchState } = useAppSelector((state) => ({
-    searchQuery: state.search.searchQuery,
-    searchList: state.search.searchList,
-    searchState: state.search.searchState,
-  }));
+  const { searchQuery, searchList, searchState } = useAppSelector((state) => state.search);
 
   const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
@@ -30,9 +32,9 @@ export const SearchBar: FC = () => {
         const tempSearch: string[] = [];
 
         //Temp search necessary to create entire list of array
-        search.data.forEach((searchItem: SearchItemObject) => {
-          console.log(searchItem);
-          tempSearch.push(searchItem.name); // Add each value to the array
+        search.data.forEach((searchItem: string) => {
+          console.log("hello: ", searchItem);
+          tempSearch.push(searchItem);
         });
         dispatch(setSearchList(tempSearch));
         dispatch(setSearchState("loaded"));
@@ -43,6 +45,12 @@ export const SearchBar: FC = () => {
     } else {
       dispatch(setSearchList([""]));
     }
+  };
+
+  const handleLink = (index: number) => {
+    const result = searchList[index];
+    dispatch(setSearchCurrent(result));
+    navigate("/search");
   };
 
   return (
@@ -60,13 +68,13 @@ export const SearchBar: FC = () => {
           )}
           {searchState === "loaded" && searchList?.length
             ? searchList.map((search, index) => (
-                <LinkSimple
-                  // TODO change this to value to a dynamic link
-                  to="/"
-                  value={search}
-                  className="rounded-xl px-2 py-1 hover:bg-gray-500"
-                  key={index}
-                />
+                <button
+                  onClick={() => handleLink(index)}
+                  className="rounded-xl px-2 py-1 text-left hover:bg-gray-500"
+                  key={search.id}
+                >
+                  {search.name}
+                </button>
               ))
             : searchState === "loaded" && (
                 <option className="rounded-xl px-2 py-1">No results found</option>
