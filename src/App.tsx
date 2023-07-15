@@ -6,6 +6,7 @@ import {
   SolarSystemBodyPage,
   StarChartPage,
   MoonPhasePage,
+  SearchPage,
 } from "./pages/indexPg";
 import { NavBar } from "./Components/UI/indexUI";
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path={`/solarSystem/:id`} element={<SolarSystemBodyPage />} />
         <Route path="/starChart" element={<StarChartPage />} />
         <Route path="/moonPhase" element={<MoonPhasePage />} />
+        <Route path="/search/:id" element={<SearchPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
