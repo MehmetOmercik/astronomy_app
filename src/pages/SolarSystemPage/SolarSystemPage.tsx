@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { LinkSimple } from "@components/UI/Buttons/Link/Link";
 import { useAppDispatch } from "@app/hooks";
 import {
   setLoading,
@@ -14,10 +13,12 @@ import { getBodyDetails } from "../../utils/http/http";
 
 import { fetchSolarSystemBody } from "@features/SolarSystem/SolarSystemAction";
 import { useGetSolarSystemBody } from "@hooks/hooks";
+import { useNavigate } from "react-router-dom";
 
 export const SolarSystemPage: FC = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const handleClick = async (planet: string, title: string, description: string) => {
+  const handleClick = async (id: number, planet: string, title: string, description: string) => {
     dispatch(setLoading(true));
     dispatch(setLoaded(false));
     dispatch(setError(false));
@@ -37,6 +38,7 @@ export const SolarSystemPage: FC = () => {
       dispatch(updateDescription(description));
       dispatch(setLoaded(true));
       dispatch(setLoading(false));
+      navigate(`./${id}`);
     } catch (error) {
       dispatch(setError(true));
       dispatch(setLoading(false));
@@ -50,17 +52,17 @@ export const SolarSystemPage: FC = () => {
   const celestialBodies = SolarSystemInfo;
 
   return (
-    <div className="flex">
-      {celestialBodies.map((body) => (
-        <div key={body.id} className="mx-2 my-4">
-          <LinkSimple
-            value={body.value}
-            to={`./${body.id}`}
-            onClick={() => handleClick(body.value, body.title, body.description)}
-            className="self-start rounded-xl bg-slate-300 p-2 text-3xl"
+    <div className="flex flex-wrap ">
+      {celestialBodies.map((body) => {
+        return (
+          <img
+            key={body.id}
+            className="relative z-10 h-64 w-64 cursor-pointer object-contain mix-blend-difference hover:scale-110"
+            src={`/src/assets/planetImages/${body.value}.png`}
+            onClick={() => handleClick(body.id, body.value, body.title, body.description)}
           />
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
