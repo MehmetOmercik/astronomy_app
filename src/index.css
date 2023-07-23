@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/*For debugging */
+/* * {
+  @apply border border-red-400 hover:bg-red-900;
+} */
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -26,13 +31,12 @@ body {
 
 /*Table classes*/
 .solar-system-table-header {
-  border: 1px rgb(230, 81, 81) solid;
-  /* border-radius: 1rem; */
+  @apply border border-gray-500 p-3 pr-5 hover:bg-slate-800;
+}
+.solar-system-table-data {
+  @apply rounded-md border border-gray-500 p-3 pr-5 hover:bg-slate-800;
 }
 
-table {
-  display: table;
-}
 table tr {
   display: table-cell;
 }

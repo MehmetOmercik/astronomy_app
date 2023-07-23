@@ -13,18 +13,15 @@ export const SolarSystemBodyPage: FC = () => {
   } = useAppSelector((state) => state.solarSystem);
   const headers = table.header;
   const rows = table.rows[0].cells;
-  // console.log(rows);
-
-  // useGetSolarSystemBody();
 
   return (
-    <div>
+    <div className="container my-8 flex justify-center">
       {solarSystemLoading && <h1>Loading, please wait...</h1>}
       {solarSystemLoaded && (
         <div>
           <h1 className="text-center">{title}</h1>
-          <p className="container mx-4 my-2">{description}</p>
-          <SolarSystemBodyTable headers={headers} rows={rows} />
+          <p className="">{description}</p>
+          <SolarSystemBodyTable className="" headers={headers} rows={rows} />
         </div>
       )}
       {solarSystemError && <p>ERROR: NOT LOADING</p>}

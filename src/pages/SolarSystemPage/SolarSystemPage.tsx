@@ -19,6 +19,7 @@ export const SolarSystemPage: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleClick = async (id: number, planet: string, title: string, description: string) => {
+    navigate(`./${id}`);
     dispatch(setLoading(true));
     dispatch(setLoaded(false));
     dispatch(setError(false));
@@ -33,12 +34,12 @@ export const SolarSystemPage: FC = () => {
         "08:00:00"
       );
       //Dispatches the new title, description and data for the SolarSystemBodyPage
+
       dispatch(updateTable(bodyPosition.data.table));
       dispatch(updateTitle(title));
       dispatch(updateDescription(description));
       dispatch(setLoaded(true));
       dispatch(setLoading(false));
-      navigate(`./${id}`);
     } catch (error) {
       dispatch(setError(true));
       dispatch(setLoading(false));
