@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, useRef, useEffect, MouseEvent } from "react";
 import { getSearch } from "@utils/http/http";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import {
@@ -6,7 +6,7 @@ import {
   setSearchList,
   setSearchCurrent,
   setSearchState,
-} from "@/features/Search/SearchSlice";
+} from "@features/Search/SearchSlice";
 import { useNavigate } from "react-router-dom";
 
 interface SearchItemObject {
@@ -20,6 +20,20 @@ export const SearchBar: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { searchQuery, searchList, searchState } = useAppSelector((state) => state.search);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // This and the useEvent is used to remove the dropDown box
+  const handleClickOutside: EventListener = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      dispatch(setSearchQuery(""));
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
@@ -33,7 +47,6 @@ export const SearchBar: FC = () => {
 
         //Temp search necessary to create entire list of array
         search.data.forEach((searchItem: string) => {
-          console.log("hello: ", searchItem);
           tempSearch.push(searchItem);
         });
         dispatch(setSearchList(tempSearch));
@@ -54,7 +67,7 @@ export const SearchBar: FC = () => {
   };
 
   return (
-    <div>
+    <div ref={dropdownRef}>
       <input
         className="w-[220px] rounded-xl px-2 py-1"
         onChange={handleSearch}

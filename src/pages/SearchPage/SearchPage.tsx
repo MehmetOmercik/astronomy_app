@@ -47,13 +47,13 @@ export const SearchPage: FC = () => {
             <td className="solar-system-table-data">Position</td>
           </tr>
           <tr>
-            <td className="solar-system-table-data">{name}</td>
-            <td className="solar-system-table-data">{type?.name}</td>
-            <td className="solar-system-table-data">{subType?.name}</td>
-            <td className="solar-system-table-data">{position?.constellation.name}</td>
+            <td className="solar-system-table-data">{name ?? "null"}</td>
+            <td className="solar-system-table-data">{type?.name ?? "null"}</td>
+            <td className="solar-system-table-data">{subType?.name ?? "null"}</td>
+            <td className="solar-system-table-data">{position?.constellation.name ?? "null"}</td>
             <td className="solar-system-table-data">
-              {position?.equatorial.rightAscension.string} RA and{" "}
-              {position?.equatorial.declination.string} DEC
+              {`${position?.equatorial.rightAscension.string} RA and
+              ${position?.equatorial.declination.string} DEC`}
             </td>
           </tr>
         </tbody>
