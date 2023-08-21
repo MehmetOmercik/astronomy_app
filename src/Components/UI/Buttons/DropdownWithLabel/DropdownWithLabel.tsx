@@ -11,6 +11,7 @@ export const DropdownWithLabel: FC<DropdownWithLabelProps> = ({
   options,
   onChange,
   property,
+  ...props
 }) => {
   const handleDropDownWithLabelChange = (value: any, property?: string) => {
     // Allows both useState and useReducer/Redux to be used
@@ -22,7 +23,7 @@ export const DropdownWithLabel: FC<DropdownWithLabelProps> = ({
   return (
     <fieldset className="flex flex-col">
       <label>{label}</label>
-      <select onChange={(e) => handleDropDownWithLabelChange(e.target.value, property)}>
+      <select {...props} onChange={(e) => handleDropDownWithLabelChange(e.target.value, property)}>
         {options.map((option, index) => (
           <option key={index}>{option}</option>
         ))}

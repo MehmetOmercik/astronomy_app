@@ -44,6 +44,12 @@ table tr td {
   display: block;
 }
 
+/*Navbar */
 .navbar-button {
   @apply rounded-2xl bg-stone-600 px-2 py-1 hover:bg-stone-500;
+}
+
+/*Form classes*/
+.input-field {
+  @apply rounded-lg px-2 py-1;
 }

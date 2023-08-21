@@ -14,7 +14,7 @@ interface StarChartDataType {
   type: string;
   constellation: string;
   constellationID: string;
-  image: string;
+  imageURL: string;
   loading: boolean;
   loaded: boolean;
   error: boolean;
@@ -33,7 +33,7 @@ const starChartInitialstate = {
   type: "Constellation",
   constellation: "Andromeda",
   constellationID: "and",
-  image: "",
+  imageURL: "",
   loading: false,
   loaded: false,
   error: false,
@@ -88,7 +88,11 @@ export const StarChartPage: FC = () => {
     try {
       const starChart = await getStarChart(starChartObject);
       console.log(starChart.data.imageUrl);
-      starChartDispatch({ type: "UPDATE", property: "image", newValue: starChart.data.imageUrl });
+      starChartDispatch({
+        type: "UPDATE",
+        property: "imageURL",
+        newValue: starChart.data.imageUrl,
+      });
       starChartDispatch({ type: "UPDATE", property: "loading", newValue: false });
       starChartDispatch({ type: "UPDATE", property: "loaded", newValue: true });
     } catch (error) {
@@ -98,44 +102,59 @@ export const StarChartPage: FC = () => {
     }
   };
   return (
-    <section className="flex max-w-[80vw]">
-      <form className="mr-[200px] flex flex-col items-start" onSubmit={handleStarChart}>
-        <label>Latitude</label>
-        <input
-          value={starChartData.latitude}
-          onChange={(e) => {
-            starChartDispatch({ type: "UPDATE", property: "latitude", newValue: e.target.value });
-          }}
-        />
-        <label>Longitude</label>
-        <input
-          value={starChartData.longitude}
-          onChange={(e) => {
-            starChartDispatch({ type: "UPDATE", property: "longitude", newValue: e.target.value });
-          }}
-        />
-        <label>Date</label>
-        <DatePicker
-          // dateFormat="Pp"
-          // showTimeSelect
-          // showIcon
-          dateFormat="dd/MM/yyyy"
-          selected={starChartData.startDate}
-          onChange={(date: Date) =>
-            starChartDispatch({ type: "UPDATE", property: "startDate", newValue: date })
-          }
-        />
+    <section className="container flex gap-x-10 p-5">
+      <form
+        className="flex flex-col gap-y-3 self-start rounded-lg bg-gray-600 p-4"
+        onSubmit={handleStarChart}
+      >
+        <fieldset className="flex flex-col">
+          <label>Latitude</label>
+          <input
+            value={starChartData.latitude}
+            className="input-field"
+            onChange={(e) => {
+              starChartDispatch({ type: "UPDATE", property: "latitude", newValue: e.target.value });
+            }}
+          />
+        </fieldset>
+        <fieldset className="flex flex-col">
+          <label>Longitude</label>
+          <input
+            value={starChartData.longitude}
+            className="input-field"
+            onChange={(e) => {
+              starChartDispatch({
+                type: "UPDATE",
+                property: "longitude",
+                newValue: e.target.value,
+              });
+            }}
+          />
+        </fieldset>
+        <fieldset className="flex flex-col">
+          <label>Date</label>
+          <DatePicker
+            dateFormat="dd/MM/yyyy"
+            className="input-field"
+            selected={starChartData.startDate}
+            onChange={(date: Date) =>
+              starChartDispatch({ type: "UPDATE", property: "startDate", newValue: date })
+            }
+          />
+        </fieldset>
         <DropdownWithLabel
           label="Style"
           options={["Default", "Inverted", "Navy", "Red"]}
           onChange={handleDropDownChange}
           property="style"
+          className="input-field"
         />
         <DropdownWithLabel
           label="Type"
           options={["Constellation", "Area"]}
           onChange={handleDropDownChange}
           property="type"
+          className="input-field"
         />
 
         <DropdownWithLabel
@@ -143,16 +162,32 @@ export const StarChartPage: FC = () => {
           options={starChartInfo.map((info) => info.name)}
           onChange={handleDropDownChange}
           property="constellation"
+          className="input-field"
         />
-        <button type="submit" className="border border-gray-300 bg-slate-900">
-          click here for star chart
+        <button
+          type="submit"
+          className="max-w-[200px] rounded-lg border border-gray-300 bg-slate-900 p-2 hover:bg-slate-600"
+        >
+          Click here to generate the Star Chart
         </button>
+        {starChartData.imageURL && (
+          <a
+            className="max-w-[200px] rounded-lg border border-gray-300 bg-yellow-700 p-2 hover:bg-yellow-600"
+            href={starChartData.imageURL}
+            download="starChartImage.png"
+            target="_blank"
+          >
+            Download image
+          </a>
+        )}
       </form>
-      <div>
+      <section className="mr-20">
         {starChartData.loading && <h1>Loading, please wait...</h1>}
-        {starChartData.loaded && <img className="absolute z-10" src={starChartData.image} />}
+        {starChartData.loaded && (
+          <img className="relative z-10 max-w-[700px]" src={starChartData.imageURL} />
+        )}
         {starChartData.error && <p>ERROR: NOT LOADING</p>}
-      </div>
+      </section>
     </section>
   );
 };
