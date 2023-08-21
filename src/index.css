@@ -50,6 +50,10 @@ table tr td {
 }
 
 /*Form classes*/
-.input-field {
+.fieldset-class {
+  @apply flex flex-col;
+}
+
+.input-class {
   @apply rounded-lg px-2 py-1;
 }

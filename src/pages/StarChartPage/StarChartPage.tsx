@@ -107,21 +107,21 @@ export const StarChartPage: FC = () => {
         className="flex flex-col gap-y-3 self-start rounded-lg bg-gray-600 p-4"
         onSubmit={handleStarChart}
       >
-        <fieldset className="flex flex-col">
+        <fieldset className="fieldset-class">
           <label>Latitude</label>
           <input
             value={starChartData.latitude}
-            className="input-field"
+            className="input-class"
             onChange={(e) => {
               starChartDispatch({ type: "UPDATE", property: "latitude", newValue: e.target.value });
             }}
           />
         </fieldset>
-        <fieldset className="flex flex-col">
+        <fieldset className="fieldset-class">
           <label>Longitude</label>
           <input
             value={starChartData.longitude}
-            className="input-field"
+            className="input-class"
             onChange={(e) => {
               starChartDispatch({
                 type: "UPDATE",
@@ -131,11 +131,11 @@ export const StarChartPage: FC = () => {
             }}
           />
         </fieldset>
-        <fieldset className="flex flex-col">
+        <fieldset className="fieldset-class">
           <label>Date</label>
           <DatePicker
             dateFormat="dd/MM/yyyy"
-            className="input-field"
+            className="input-class"
             selected={starChartData.startDate}
             onChange={(date: Date) =>
               starChartDispatch({ type: "UPDATE", property: "startDate", newValue: date })
@@ -147,14 +147,14 @@ export const StarChartPage: FC = () => {
           options={["Default", "Inverted", "Navy", "Red"]}
           onChange={handleDropDownChange}
           property="style"
-          className="input-field"
+          selectClassName="input-class"
         />
         <DropdownWithLabel
           label="Type"
           options={["Constellation", "Area"]}
           onChange={handleDropDownChange}
           property="type"
-          className="input-field"
+          selectClassName="input-class"
         />
 
         <DropdownWithLabel
@@ -162,17 +162,17 @@ export const StarChartPage: FC = () => {
           options={starChartInfo.map((info) => info.name)}
           onChange={handleDropDownChange}
           property="constellation"
-          className="input-field"
+          selectClassName="input-class"
         />
         <button
           type="submit"
-          className="max-w-[200px] rounded-lg border border-gray-300 bg-slate-900 p-2 hover:bg-slate-600"
+          className="max-w-[200px] rounded-xl bg-slate-900 p-2 hover:bg-slate-800"
         >
           Click here to generate the Star Chart
         </button>
         {starChartData.imageURL && (
           <a
-            className="max-w-[200px] rounded-lg border border-gray-300 bg-yellow-700 p-2 hover:bg-yellow-600"
+            className="flex max-w-[200px] justify-center rounded-xl bg-yellow-700 p-2 hover:bg-yellow-600"
             href={starChartData.imageURL}
             download="starChartImage.png"
             target="_blank"

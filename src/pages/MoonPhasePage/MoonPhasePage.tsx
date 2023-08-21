@@ -55,47 +55,65 @@ export const MoonPhasePage: FC = () => {
     }
   };
   return (
-    <>
-      <p>Moon Phase Page</p>
-      <section className="flex max-w-[80vw] justify-between">
-        <form onSubmit={handleMoonPhase} className="flex flex-col items-start">
+    <section className="flex gap-x-10 p-5">
+      <form
+        onSubmit={handleMoonPhase}
+        className="flex flex-col gap-y-3 self-start rounded-lg bg-gray-600 p-4"
+      >
+        <fieldset className="fieldset-class">
           <label>Latitude</label>
           <input
             value={latitude}
+            className="input-class"
             onChange={(e) => {
               setLatitude(e.target.value);
             }}
           />
+        </fieldset>
+        <fieldset className="fieldset-class">
           <label>Longitude</label>
           <input
             value={longitude}
+            className="input-class"
             onChange={(e) => {
               setLongitude(e.target.value);
             }}
           />
+        </fieldset>
+        <fieldset className="fieldset-class">
           <label>Date</label>
           <DatePicker
-            // dateFormat="Pp"
-            // showTimeSelect
+            className="input-class"
             dateFormat="dd/MM/yyyy"
             selected={startDate}
             onChange={(date: Date) => setStartDate(date)}
           />
-          <DropdownWithLabel
-            label="Moon Style"
-            options={["Default", "Sketch", "Shaded"]}
-            onChange={setMoonStyle}
-          />
-          <button type="submit" className="rounded-xl bg-green-600 p-2">
-            Submit
-          </button>
-        </form>
-        <div>
-          {loading && <h1>Loading, please wait...</h1>}
-          {loaded && <img className="absolute z-10" src={moonPhaseImage} />}
-          {error && <p>ERROR: NOT LOADING</p>}
-        </div>
-      </section>
-    </>
+        </fieldset>
+        <DropdownWithLabel
+          label="Moon Style"
+          options={["Default", "Sketch", "Shaded"]}
+          onChange={setMoonStyle}
+          selectClassName="input-class"
+        />
+        <button type="submit" className="rounded-xl bg-green-600 p-2 hover:bg-green-400">
+          Generate
+        </button>
+        {moonPhaseImage && (
+          <a
+            className="flex justify-center rounded-xl bg-yellow-700 p-2 hover:bg-yellow-600"
+            href={moonPhaseImage}
+            download="starChartImage.png"
+            target="_blank"
+          >
+            Download image
+          </a>
+        )}
+      </form>
+      <div>
+        {loading && <h1>Loading, please wait...</h1>}
+        {loaded && <img className="relative z-10" src={moonPhaseImage} />}
+        {error && <p>ERROR: NOT LOADING</p>}
+      </div>
+    </section>
   );
 };
