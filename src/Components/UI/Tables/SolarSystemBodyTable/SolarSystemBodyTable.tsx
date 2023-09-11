@@ -16,11 +16,14 @@ export const SolarSystemBodyTable: FC<SolarSystemBodyTableProps> = ({
         <tr className="solar-system-table-header">
           <th className=""></th>
         </tr>
-        {headers.map((header: ReactNode, index: number) => (
-          <tr key={index} className="solar-system-table-header">
-            <th className="">{header}</th>
-          </tr>
-        ))}
+        {headers.map((header: Date, index: number) => {
+          const date = new Date(header).toLocaleDateString();
+          return (
+            <tr key={index} className="solar-system-table-header flex  justify-center">
+              <th className="text-center">{date}</th>
+            </tr>
+          );
+        })}
       </thead>
       <tbody className="">
         <tr className="">
