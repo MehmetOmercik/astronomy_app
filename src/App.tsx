@@ -21,7 +21,7 @@ const App = () => {
     await loadFull(engine);
   }, []);
   return (
-    <>
+    <section className="flex min-h-[100vh]">
       <NavBar />
       <Particles options={particlesOptions as ISourceOptions} init={particlesInit} />
       <Routes>
@@ -33,7 +33,7 @@ const App = () => {
         <Route path="/search" element={<SearchPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </>
+    </section>
   );
 };
 

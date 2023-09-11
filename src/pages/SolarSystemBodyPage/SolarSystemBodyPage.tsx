@@ -19,8 +19,8 @@ export const SolarSystemBodyPage: FC = () => {
       {solarSystemLoading && <h1>Loading, please wait...</h1>}
       {solarSystemLoaded && (
         <div>
-          <h1 className="text-center">{title}</h1>
-          <p className="">{description}</p>
+          <h1 className="mb-4 text-center">{title}</h1>
+          {/* <p className="">{description}</p> */}
           <SolarSystemBodyTable className="" headers={headers} rows={rows} />
         </div>
       )}

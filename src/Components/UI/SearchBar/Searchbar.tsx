@@ -67,15 +67,15 @@ export const SearchBar: FC = () => {
   };
 
   return (
-    <div ref={dropdownRef}>
+    <div className="p-1" ref={dropdownRef}>
       <input
-        className="w-[220px] rounded-xl px-2 py-1"
+        className="rounded-xl px-2 py-1"
         onChange={handleSearch}
         placeholder="Search"
         value={searchQuery}
       />
       {searchQuery && (
-        <fieldset className="fixed top-[58px] z-20 flex w-[220px] flex-col rounded-xl bg-gray-600">
+        <fieldset className="fixed left-[220px] top-[16px] z-20 flex w-[220px] flex-col rounded-xl bg-gray-600">
           {searchState === "loading" && (
             <option className="rounded-xl px-2 py-1">Loading, Please Wait...</option>
           )}
