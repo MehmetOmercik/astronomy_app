@@ -3,7 +3,7 @@ import { FC } from "react";
 interface DropdownWithLabelProps {
   label: string;
   options: string[];
-  onChange: (value: string, property?: string) => void;
+  onChange: any;
   property?: string;
   selectClassName?: string;
 }

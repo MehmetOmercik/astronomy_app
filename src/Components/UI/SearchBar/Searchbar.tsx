@@ -14,7 +14,11 @@ interface SearchItemObject {
   name: string;
   type: object;
   subtype: object;
+  value: {};
+  array: {}[];
 }
+
+// (value: {}, index: number, array: {}[])
 
 export const SearchBar: FC = () => {
   const navigate = useNavigate();
@@ -23,15 +27,16 @@ export const SearchBar: FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // This and the useEvent is used to remove the dropDown box
-  const handleClickOutside: EventListener = (event: MouseEvent) => {
+  //TODO fix this type, it use to be EventListener
+  const handleClickOutside: any = (event: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       dispatch(setSearchQuery(""));
     }
   };
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
+    document?.addEventListener("click", handleClickOutside);
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document?.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
@@ -79,8 +84,9 @@ export const SearchBar: FC = () => {
           {searchState === "loading" && (
             <option className="rounded-xl px-2 py-1">Loading, Please Wait...</option>
           )}
+          {/*//TODO Fix search type */}
           {searchState === "loaded" && searchList?.length
-            ? searchList.map((search, index) => (
+            ? searchList.map((search: any, index) => (
                 <button
                   onClick={() => handleLink(index)}
                   className="rounded-xl px-2 py-1 text-left hover:bg-gray-500"

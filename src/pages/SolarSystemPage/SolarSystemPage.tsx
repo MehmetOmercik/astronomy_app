@@ -10,9 +10,6 @@ import {
 } from "@features/SolarSystem/SolarSystemSlice";
 import SolarSystemInfo from "./SolarSystemInfo.json";
 import { getBodyDetails } from "../../utils/http/http";
-
-import { fetchSolarSystemBody } from "@features/SolarSystem/SolarSystemAction";
-import { useGetSolarSystemBody } from "@hooks/hooks";
 import { useNavigate } from "react-router-dom";
 
 export const SolarSystemPage: FC = () => {
@@ -30,7 +27,6 @@ export const SolarSystemPage: FC = () => {
     const day = String(date.getDate()).padStart(2, "0");
     const dateFormatted = `${year}-${month}-${day}`;
 
-    console.log("🚀 ~ file: SolarSystemPage.tsx:27 ~ handleClick ~ dateNow:", dateFormatted);
     try {
       const bodyPosition = await getBodyDetails(
         planet,

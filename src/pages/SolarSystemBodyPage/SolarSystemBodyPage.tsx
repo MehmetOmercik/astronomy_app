@@ -1,16 +1,27 @@
 import { FC } from "react";
 import { useAppSelector } from "@app/hooks";
-import { SolarSystemBodyTable } from "@components/UI/indexUI";
+import { SolarSystemBodyTable } from "@/components/UI/indexUI";
 
 export const SolarSystemBodyPage: FC = () => {
+  interface SolarSystemState {
+    title: string;
+    table: {
+      header: string[];
+      rows: {
+        cells: string[]; // Replace with the actual type of cells
+      }[];
+    };
+  }
+
+  //TODO get solarSystemState working for below
   const {
     title,
-    description,
+    // description,
     table,
     loading: solarSystemLoading,
     loaded: solarSystemLoaded,
     error: solarSystemError,
-  } = useAppSelector((state) => state.solarSystem);
+  } = useAppSelector((state: any) => state.solarSystem);
   const headers = table.header;
   const rows = table.rows[0].cells;
 

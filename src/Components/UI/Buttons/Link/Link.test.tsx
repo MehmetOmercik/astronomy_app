@@ -1,6 +1,6 @@
-import { render } from "@testing-library/react";
+// import { render } from "@testing-library/react";
 import { LinkSimple } from "./Link";
-import { renderWithProviders } from "../../../../Test/test-utils";
+import { renderWithProviders } from "../../../../test/test-utils";
 
 describe("Link tests", () => {
   test("snapshot test", () => {

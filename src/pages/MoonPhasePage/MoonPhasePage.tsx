@@ -44,7 +44,6 @@ export const MoonPhasePage: FC = () => {
     };
     try {
       const moonPhase = await getMoonPhase(moonPhaseObject);
-      console.log(moonPhase.data.imageUrl);
       setMoonPhaseImage(moonPhase.data.imageUrl);
       setLoading(false);
       setLoaded(true);

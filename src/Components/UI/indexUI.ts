@@ -1,4 +1,4 @@
-export { SearchBar } from "./SearchBar/SearchBar";
+export { SearchBar } from "./SearchBar/Searchbar";
 export { NavBar } from "./NavBar/NavBar";
 
 //Buttons

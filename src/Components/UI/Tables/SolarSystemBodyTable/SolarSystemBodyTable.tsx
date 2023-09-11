@@ -1,8 +1,40 @@
-import React, { FC, ReactNode, HTMLAttributes } from "react";
+import { FC, HTMLAttributes } from "react";
 
 interface SolarSystemBodyTableProps extends HTMLAttributes<HTMLTableElement> {
   headers: [];
-  rows: [];
+  rows: [{}];
+}
+
+// Interfaces for row object
+interface Distance {
+  fromEarth: {
+    au: string;
+    km: string;
+  };
+}
+
+interface Position {
+  equatorial: {
+    rightAscension: {
+      hours: string;
+      string: string;
+    };
+    declination: {
+      degrees: string;
+      string: string;
+    };
+  };
+}
+
+interface ExtraInfo {
+  elongation: number | null;
+  magnitude: number | null;
+}
+
+interface RowProps {
+  distance: Distance;
+  position: Position;
+  extraInfo: ExtraInfo;
 }
 
 export const SolarSystemBodyTable: FC<SolarSystemBodyTableProps> = ({
@@ -32,29 +64,25 @@ export const SolarSystemBodyTable: FC<SolarSystemBodyTableProps> = ({
           <td className="solar-system-table-data">Elongation</td>
           <td className="solar-system-table-data">Magnitude</td>
         </tr>
-        {rows.map(
-          (row: object, index: number) => (
-            console.log(row),
-            (
-              <tr key={index}>
-                <td className="solar-system-table-data">
-                  {row.distance.fromEarth.au} au / {row.distance.fromEarth.km} km
-                </td>
-                <td className="solar-system-table-data">
-                  {row.position.equatorial.rightAscension.string} rh AND{" "}
-                  {row.position.equatorial.declination.string}
-                  dec
-                </td>
-                <td className="solar-system-table-data">
-                  {row.extraInfo.elongation ? row.extraInfo.elongation : "null"}
-                </td>
-                <td className="solar-system-table-data">
-                  {row.extraInfo.magnitude ? row.extraInfo.magnitude : "null"}
-                </td>
-              </tr>
-            )
-          )
-        )}
+        {/*//TODO make rowProps work with type row */}
+        {rows.map((row: any, index: number) => (
+          <tr key={index}>
+            <td className="solar-system-table-data">
+              {row.distance.fromEarth.au} au / {row.distance.fromEarth.km} km
+            </td>
+            <td className="solar-system-table-data">
+              {row.position.equatorial.rightAscension.string} rh AND{" "}
+              {row.position.equatorial.declination.string}
+              dec
+            </td>
+            <td className="solar-system-table-data">
+              {row.extraInfo.elongation ? row.extraInfo.elongation : "null"}
+            </td>
+            <td className="solar-system-table-data">
+              {row.extraInfo.magnitude ? row.extraInfo.magnitude : "null"}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

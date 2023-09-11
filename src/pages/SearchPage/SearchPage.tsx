@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useAppSelector } from "@app/hooks";
 
 interface SearchPageProps {
@@ -31,8 +31,15 @@ interface SearchPageProps {
   };
 }
 export const SearchPage: FC = () => {
-  const searchCurrent: SearchPageProps = useAppSelector((state) => state.search.searchCurrent);
-  const { name, type, subType, crossIdentification, position } = searchCurrent;
+  //TODO get searchPageProps working as a type
+  const searchCurrent: any = useAppSelector((state) => state.search.searchCurrent);
+  const {
+    name,
+    type,
+    subType,
+    // crossIdentification,
+    position,
+  } = searchCurrent;
 
   return (
     <div className="flex flex-col">

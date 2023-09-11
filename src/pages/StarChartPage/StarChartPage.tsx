@@ -52,7 +52,6 @@ const starChartReducer: Reducer<StarChartDataType, StarChartAction> = (state, ac
 };
 export const StarChartPage: FC = () => {
   const [starChartData, starChartDispatch] = useReducer(starChartReducer, starChartInitialstate);
-  console.log(starChartData);
 
   useEffect(() => {
     starChartInfo.map((info) => {
@@ -87,7 +86,6 @@ export const StarChartPage: FC = () => {
     };
     try {
       const starChart = await getStarChart(starChartObject);
-      console.log(starChart.data.imageUrl);
       starChartDispatch({
         type: "UPDATE",
         property: "imageURL",
