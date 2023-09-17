@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { LinkSimple } from "../indexUI";
-import { SearchBar } from "../indexUI";
+// import { SearchBar } from "../indexUI";
 export const NavBar: FC = () => {
   return (
     <nav className="flex min-w-[150px] flex-col gap-y-2 bg-gray-700 py-4">

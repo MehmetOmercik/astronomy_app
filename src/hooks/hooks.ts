@@ -1,1 +1,1 @@
-export { useGetSolarSystemBody } from "./useGetSolarSystemBody/useGetSolarSystemBody";
+// export { useGetSolarSystemBody } from "./useGetSolarSystemBody/useGetSolarSystemBody";

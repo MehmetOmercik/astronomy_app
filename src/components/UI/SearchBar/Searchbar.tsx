@@ -9,14 +9,14 @@ import {
 } from "@features/Search/SearchSlice";
 import { useNavigate } from "react-router-dom";
 
-interface SearchItemObject {
-  id: string;
-  name: string;
-  type: object;
-  subtype: object;
-  value: {};
-  array: {}[];
-}
+// interface SearchItemObject {
+//   id: string;
+//   name: string;
+//   type: object;
+//   subtype: object;
+//   value: {};
+//   array: {}[];
+// }
 
 // (value: {}, index: number, array: {}[])
 

@@ -6,36 +6,36 @@ interface SolarSystemBodyTableProps extends HTMLAttributes<HTMLTableElement> {
 }
 
 // Interfaces for row object
-interface Distance {
-  fromEarth: {
-    au: string;
-    km: string;
-  };
-}
+// interface Distance {
+//   fromEarth: {
+//     au: string;
+//     km: string;
+//   };
+// }
 
-interface Position {
-  equatorial: {
-    rightAscension: {
-      hours: string;
-      string: string;
-    };
-    declination: {
-      degrees: string;
-      string: string;
-    };
-  };
-}
+// interface Position {
+//   equatorial: {
+//     rightAscension: {
+//       hours: string;
+//       string: string;
+//     };
+//     declination: {
+//       degrees: string;
+//       string: string;
+//     };
+//   };
+// }
 
-interface ExtraInfo {
-  elongation: number | null;
-  magnitude: number | null;
-}
+// interface ExtraInfo {
+//   elongation: number | null;
+//   magnitude: number | null;
+// }
 
-interface RowProps {
-  distance: Distance;
-  position: Position;
-  extraInfo: ExtraInfo;
-}
+// interface RowProps {
+//   distance: Distance;
+//   position: Position;
+//   extraInfo: ExtraInfo;
+// }
 
 export const SolarSystemBodyTable: FC<SolarSystemBodyTableProps> = ({
   headers,

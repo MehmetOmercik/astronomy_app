@@ -1,35 +1,35 @@
 import { FC } from "react";
 import { useAppSelector } from "@app/hooks";
 
-interface SearchPageProps {
-  name: string;
-  type: {
-    id: string;
-    name: string;
-  };
-  subType: {
-    id: string;
-    name: string;
-  };
-  crossIdentification: object[];
-  position: {
-    constellation: {
-      id: string;
-      short: string;
-      name: string;
-    };
-    equatorial: {
-      declination: {
-        degress: string;
-        string: string;
-      };
-      rightAscension: {
-        degress: string;
-        string: string;
-      };
-    };
-  };
-}
+// interface SearchPageProps {
+//   name: string;
+//   type: {
+//     id: string;
+//     name: string;
+//   };
+//   subType: {
+//     id: string;
+//     name: string;
+//   };
+//   crossIdentification: object[];
+//   position: {
+//     constellation: {
+//       id: string;
+//       short: string;
+//       name: string;
+//     };
+//     equatorial: {
+//       declination: {
+//         degress: string;
+//         string: string;
+//       };
+//       rightAscension: {
+//         degress: string;
+//         string: string;
+//       };
+//     };
+//   };
+// }
 export const SearchPage: FC = () => {
   //TODO get searchPageProps working as a type
   const searchCurrent: any = useAppSelector((state) => state.search.searchCurrent);
