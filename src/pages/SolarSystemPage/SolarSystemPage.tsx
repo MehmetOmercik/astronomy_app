@@ -63,7 +63,7 @@ export const SolarSystemPage: FC = () => {
           <img
             key={body.id}
             className="relative z-10 h-64 w-64 cursor-pointer object-contain mix-blend-difference hover:scale-110"
-            src={`/src/assets/planetImages/${body.value}.png`}
+            src={`/planetImages/${body.value}.png`}
             onClick={() => handleClick(body.id, body.value, body.title, body.description)}
           />
         );
