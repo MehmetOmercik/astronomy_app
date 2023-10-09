@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { useAppDispatch } from "@app/hooks";
 import {
   setLoading,
@@ -12,7 +11,7 @@ import SolarSystemInfo from "./SolarSystemInfo.json";
 import { getBodyDetails } from "../../utils/http/http";
 import { useNavigate } from "react-router-dom";
 
-export const SolarSystemPage: FC = () => {
+export const SolarSystemPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleClick = async (id: number, planet: string, title: string, description: string) => {
@@ -57,7 +56,7 @@ export const SolarSystemPage: FC = () => {
   const celestialBodies = SolarSystemInfo;
 
   return (
-    <div className="flex flex-wrap ">
+    <div className="flex min-w-[calc(100%-150px)] flex-wrap">
       {celestialBodies.map((body) => {
         return (
           <img

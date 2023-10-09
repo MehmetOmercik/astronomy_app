@@ -1,8 +1,7 @@
-import { FC } from "react";
 import { useAppSelector } from "@app/hooks";
 import { SolarSystemBodyTable } from "@components/UI/indexUI";
 
-export const SolarSystemBodyPage: FC = () => {
+export const SolarSystemBodyPage: React.FC = () => {
   // interface SolarSystemState {
   //   title: string;
   //   table: {
@@ -26,7 +25,7 @@ export const SolarSystemBodyPage: FC = () => {
   const rows = table.rows[0].cells;
 
   return (
-    <div className="container my-8 flex justify-center">
+    <div className="container my-8 flex min-w-[calc(100%-150px)] justify-center">
       {solarSystemLoading && <h1>Loading, please wait...</h1>}
       {solarSystemLoaded && (
         <div>

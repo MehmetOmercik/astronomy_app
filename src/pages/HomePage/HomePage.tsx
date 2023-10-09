@@ -1,8 +1,6 @@
-import { FC } from "react";
-
-export const HomePage: FC = () => {
+export const HomePage: React.FC = () => {
   return (
-    <section className="mt-16 text-center text-xl leading-9 sm:container">
+    <section className="mt-16 min-w-[calc(100%-150px)] text-center text-xl leading-9 sm:container">
       <p>Home Page</p>
       <p>Hello, welcome to the homepage of my astronomy web application.</p>
       <p>

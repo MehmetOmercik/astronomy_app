@@ -54,7 +54,7 @@ export const MoonPhasePage: FC = () => {
     }
   };
   return (
-    <section className="flex gap-x-10 p-5">
+    <section className="flex min-w-[calc(100%-150px)] gap-x-10 p-5">
       <form
         onSubmit={handleMoonPhase}
         className="flex flex-col gap-y-3 self-start rounded-lg bg-gray-600 p-4"

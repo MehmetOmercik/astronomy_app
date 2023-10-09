@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { useAppSelector } from "@app/hooks";
 
 // interface SearchPageProps {
@@ -30,7 +29,7 @@ import { useAppSelector } from "@app/hooks";
 //     };
 //   };
 // }
-export const SearchPage: FC = () => {
+export const SearchPage: React.FC = () => {
   //TODO get searchPageProps working as a type
   const searchCurrent: any = useAppSelector((state) => state.search.searchCurrent);
   const {
@@ -42,7 +41,7 @@ export const SearchPage: FC = () => {
   } = searchCurrent;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex min-w-[calc(100%-150px)] flex-col">
       <h1 className="my-4 text-center text-4xl text-yellow-500">{name}</h1>
       <table className="self-center">
         <tbody>
