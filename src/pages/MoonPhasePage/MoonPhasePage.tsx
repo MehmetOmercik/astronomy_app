@@ -11,15 +11,17 @@ export const MoonPhasePage: FC = () => {
   const [moonStyle, setMoonStyle] = useState("Default");
   const [moonPhaseImage, setMoonPhaseImage] = useState("");
 
-  const [loading, setLoading] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
+  enum MoonStatus {
+    PENDING = "pending",
+    FULFILLED = "fulfilled",
+    REJECTED = "rejected",
+  }
+
+  const [moonState, setMoonState] = useState<MoonStatus>();
 
   const handleMoonPhase = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setLoaded(false);
-    setError(false);
+    setMoonState(MoonStatus.PENDING);
     const moonPhaseObject = {
       format: "png" as const,
       style: {
@@ -45,12 +47,10 @@ export const MoonPhasePage: FC = () => {
     try {
       const moonPhase = await getMoonPhase(moonPhaseObject);
       setMoonPhaseImage(moonPhase.data.imageUrl);
-      setLoading(false);
-      setLoaded(true);
+      setMoonState(MoonStatus.FULFILLED);
     } catch (error) {
       console.log("Something went wrong with star chart call: ", error);
-      setLoading(false);
-      setError(true);
+      setMoonState(MoonStatus.REJECTED);
     }
   };
   return (
@@ -109,9 +109,11 @@ export const MoonPhasePage: FC = () => {
         )}
       </form>
       <div>
-        {loading && <h1>Loading, please wait...</h1>}
-        {loaded && <img className="relative z-10" src={moonPhaseImage} />}
-        {error && <p>ERROR: NOT LOADING</p>}
+        {moonState === MoonStatus.PENDING && <h1>Loading, please wait...</h1>}
+        {moonState === MoonStatus.FULFILLED && (
+          <img className="relative z-10" src={moonPhaseImage} />
+        )}
+        {moonState === MoonStatus.REJECTED && <p>ERROR: NOT LOADING</p>}
       </div>
     </section>
   );

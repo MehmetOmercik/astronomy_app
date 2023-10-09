@@ -32,13 +32,7 @@ import { useAppSelector } from "@app/hooks";
 export const SearchPage: React.FC = () => {
   //TODO get searchPageProps working as a type
   const searchCurrent: any = useAppSelector((state) => state.search.searchCurrent);
-  const {
-    name,
-    type,
-    subType,
-    // crossIdentification,
-    position,
-  } = searchCurrent;
+  const { name, type, subType, position } = searchCurrent;
 
   return (
     <div className="flex min-w-[calc(100%-150px)] flex-col">

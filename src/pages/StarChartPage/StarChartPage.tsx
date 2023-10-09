@@ -15,9 +15,7 @@ interface StarChartDataType {
   constellation: string;
   constellationID: string;
   imageURL: string;
-  loading: boolean;
-  loaded: boolean;
-  error: boolean;
+  state: string;
 }
 
 type StarChartAction = {
@@ -25,6 +23,13 @@ type StarChartAction = {
   property: string;
   newValue: string | boolean | Date;
 };
+
+enum StarChartStatus {
+  PENDING = "pending",
+  FULFILLED = "fulfilled",
+  REJECTED = "rejected",
+}
+
 const starChartInitialstate = {
   latitude: "51.51",
   longitude: "0.13",
@@ -34,9 +39,7 @@ const starChartInitialstate = {
   constellation: "Andromeda",
   constellationID: "and",
   imageURL: "",
-  loading: false,
-  loaded: false,
-  error: false,
+  state: "",
 };
 
 const starChartReducer: Reducer<StarChartDataType, StarChartAction> = (state, action) => {
@@ -67,9 +70,7 @@ export const StarChartPage: FC = () => {
 
   const handleStarChart = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    starChartDispatch({ type: "UPDATE", property: "loading", newValue: true });
-    starChartDispatch({ type: "UPDATE", property: "loaded", newValue: false });
-    starChartDispatch({ type: "UPDATE", property: "error", newValue: false });
+    starChartDispatch({ type: "UPDATE", property: "state", newValue: StarChartStatus.PENDING });
     const starChartObject = {
       style: starChartData.style.toLowerCase(),
       observer: {
@@ -91,12 +92,10 @@ export const StarChartPage: FC = () => {
         property: "imageURL",
         newValue: starChart.data.imageUrl,
       });
-      starChartDispatch({ type: "UPDATE", property: "loading", newValue: false });
-      starChartDispatch({ type: "UPDATE", property: "loaded", newValue: true });
+      starChartDispatch({ type: "UPDATE", property: "state", newValue: StarChartStatus.FULFILLED });
     } catch (error) {
       console.log("Something went wrong with star chart call: ", error);
-      starChartDispatch({ type: "UPDATE", property: "loading", newValue: false });
-      starChartDispatch({ type: "UPDATE", property: "error", newValue: true });
+      starChartDispatch({ type: "UPDATE", property: "state", newValue: StarChartStatus.REJECTED });
     }
   };
   return (
@@ -180,11 +179,11 @@ export const StarChartPage: FC = () => {
         )}
       </form>
       <section className="mr-20">
-        {starChartData.loading && <h1>Loading, please wait...</h1>}
-        {starChartData.loaded && (
+        {starChartData.state === StarChartStatus.PENDING && <h1>Loading, please wait...</h1>}
+        {starChartData.state === StarChartStatus.FULFILLED && (
           <img className="relative z-10 max-w-[700px]" src={starChartData.imageURL} />
         )}
-        {starChartData.error && <p>ERROR: NOT LOADING</p>}
+        {starChartData.state === StarChartStatus.REJECTED && <p>ERROR: NOT LOADING</p>}
       </section>
     </section>
   );

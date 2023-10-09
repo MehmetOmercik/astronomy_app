@@ -1,11 +1,10 @@
 import { useAppDispatch } from "@app/hooks";
 import {
-  setLoading,
-  setLoaded,
-  setError,
+  setState,
   updateTitle,
   updateDescription,
   updateTable,
+  SolarSystemState,
 } from "@features/SolarSystem/SolarSystemSlice";
 import SolarSystemInfo from "./SolarSystemInfo.json";
 import { getBodyDetails } from "../../utils/http/http";
@@ -16,9 +15,7 @@ export const SolarSystemPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const handleClick = async (id: number, planet: string, title: string, description: string) => {
     navigate(`./${id}`);
-    dispatch(setLoading(true));
-    dispatch(setLoaded(false));
-    dispatch(setError(false));
+    dispatch(setState(SolarSystemState.PENDING));
 
     const date = new Date();
     const year = date.getFullYear();
@@ -41,11 +38,9 @@ export const SolarSystemPage: React.FC = () => {
       dispatch(updateTable(bodyPosition.data.table));
       dispatch(updateTitle(title));
       dispatch(updateDescription(description));
-      dispatch(setLoaded(true));
-      dispatch(setLoading(false));
+      dispatch(setState(SolarSystemState.FULFILLED));
     } catch (error) {
-      dispatch(setError(true));
-      dispatch(setLoading(false));
+      dispatch(setState(SolarSystemState.REJECTED));
       console.error(
         "SolarSystemPage dispatch of title and description or api call has failed: ",
         error
