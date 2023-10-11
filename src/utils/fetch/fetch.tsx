@@ -6,6 +6,9 @@
  * @returns {object}
  */
 
+import axios from "axios";
+import { authString } from "../api/api";
+
 export const options = (
   method: string,
   { payload, authString }: { payload?: object; authString: string }
@@ -32,6 +35,35 @@ export async function fetchSimple(path: string, options = {}) {
       throw new Error("Failed to fetch data");
     }
     return response.json();
+  } catch (error) {
+    console.error("Error: ", (error as Error).message);
+  }
+}
+
+export async function axiosSimple(
+  path: string,
+  method: string,
+  payload?: object,
+  customAuthString?: string | null //Optional parameter to specifically define authString
+  // options = {}
+) {
+  try {
+    const response = await axios({
+      method: method,
+      url: path,
+      headers: {
+        Authorization: `Basic ${customAuthString || authString}`,
+      },
+      data: { ...payload },
+    });
+    if (response.status !== (200 || 201)) {
+      throw new Error(
+        `Invalid response:  ${response?.status ?? "Unknown Status"} ${
+          response?.statusText ?? "Unknown Status text"
+        } `
+      );
+    }
+    return response.data;
   } catch (error) {
     console.error("Error: ", (error as Error).message);
   }

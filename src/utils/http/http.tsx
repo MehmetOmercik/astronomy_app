@@ -1,5 +1,5 @@
 import { BODIES, MOON_PHASE, POSITIONS, SEARCH, STAR_CHART, authString } from "../api/api";
-import { options, fetchSimple } from "../fetch/fetch";
+import { options, fetchSimple, axiosSimple } from "../fetch/fetch";
 
 /**
  * Fetches an array of celestial bodies in the solar system
@@ -81,8 +81,9 @@ type starChartObject = {
  * @param payload
  * @returns {Promise}
  */
-export const getStarChart = async (payload: starChartObject): Promise<any> => {
-  return await fetchSimple(STAR_CHART, options("POST", { authString, payload }));
+export const postStarChart = async (payload: starChartObject): Promise<any> => {
+  // return await fetchSimple(STAR_CHART, options("POST", { authString, payload }));
+  return await axiosSimple(STAR_CHART, "POST", payload);
 };
 
 interface MoonPhaseObject {
@@ -112,7 +113,6 @@ interface MoonPhaseObject {
 export const getMoonPhase = async (payload: MoonPhaseObject): Promise<any> => {
   return await fetchSimple(MOON_PHASE, options("POST", { authString, payload }));
 };
-
 /**
  * Allows you to search the API's catalogue for objects
  * @param term

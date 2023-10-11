@@ -1,6 +1,6 @@
 import { FC, ChangeEvent, useEffect, useReducer } from "react";
 import { Reducer } from "react";
-import { getStarChart } from "@utils/http/http";
+import { postStarChart } from "@utils/http/http";
 import { DropdownWithLabel } from "@components/UI/indexUI";
 import starChartInfo from "./StarChartInfo.json";
 import DatePicker from "react-datepicker";
@@ -86,7 +86,7 @@ export const StarChartPage: FC = () => {
       },
     };
     try {
-      const starChart = await getStarChart(starChartObject);
+      const starChart = await postStarChart(starChartObject);
       starChartDispatch({
         type: "UPDATE",
         property: "imageURL",
