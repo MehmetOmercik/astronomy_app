@@ -13,7 +13,12 @@ import { useNavigate } from "react-router-dom";
 export const SolarSystemPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const handleClick = async (id: number, planet: string, title: string, description: string) => {
+  const handleClick = async (
+    id: number,
+    planet: string,
+    title: string,
+    description: string
+  ) => {
     navigate(`./${id}`);
     dispatch(setState(SolarSystemState.PENDING));
 
@@ -33,6 +38,7 @@ export const SolarSystemPage: React.FC = () => {
         dateFormatted,
         "08:00:00"
       );
+      console.log("bodyposition: ", bodyPosition);
       //Dispatches the new title, description and data for the SolarSystemBodyPage
 
       dispatch(updateTable(bodyPosition.data.table));
@@ -58,7 +64,9 @@ export const SolarSystemPage: React.FC = () => {
             key={body.id}
             className="relative z-10 h-64 w-64 cursor-pointer object-contain mix-blend-difference hover:scale-110"
             src={`/planetImages/${body.value}.png`}
-            onClick={() => handleClick(body.id, body.value, body.title, body.description)}
+            onClick={() =>
+              handleClick(body.id, body.value, body.title, body.description)
+            }
           />
         );
       })}

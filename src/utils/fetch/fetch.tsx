@@ -41,19 +41,23 @@ export async function fetchSimple(path: string, options = {}) {
 }
 
 export async function axiosSimple(
-  path: string,
+  url: string, //Can use url as full path or url to add onto the baseURL
   method: string,
   payload?: object,
+  params?: object | null,
+  baseURL?: string, //
   customAuthString?: string | null //Optional parameter to specifically define authString
   // options = {}
 ) {
   try {
     const response = await axios({
       method: method,
-      url: path,
+      url: url,
+      baseURL: baseURL,
       headers: {
         Authorization: `Basic ${customAuthString || authString}`,
       },
+      params: { ...params },
       data: { ...payload },
     });
     if (response.status !== (200 || 201)) {

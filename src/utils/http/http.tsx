@@ -1,13 +1,21 @@
-import { BODIES, MOON_PHASE, POSITIONS, SEARCH, STAR_CHART, authString } from "../api/api";
+import {
+  // BODIES,
+  MOON_PHASE,
+  POSITIONS,
+  SEARCH,
+  STAR_CHART,
+  authString,
+} from "../api/api";
 import { options, fetchSimple, axiosSimple } from "../fetch/fetch";
 
 /**
  * Fetches an array of celestial bodies in the solar system
  * @returns {Promise}
  */
-export const getBodies = async (): Promise<any> => {
-  return await fetchSimple(BODIES, options("GET", { authString }));
-};
+// ! NOT IN USE
+// export const getBodies = async (): Promise<any> => {
+//   return await fetchSimple(BODIES, options("GET", { authString }));
+// };
 
 /**
  * Fetches the positions of all celestial bodies in the solar system given the observer location and time
@@ -19,19 +27,20 @@ export const getBodies = async (): Promise<any> => {
  * @param time
  * @returns {Promise}
  */
-export const getAllBodyDetails = async (
-  latitude: number,
-  longitude: number,
-  elevation: number,
-  fromDate: string,
-  toDate: string,
-  time: string
-): Promise<any> => {
-  return await fetchSimple(
-    `${POSITIONS}/?latitude=${latitude}&longitude=${longitude}&elevation=${elevation}&from_date=${fromDate}&to_date=${toDate}&time=${time}`,
-    options("GET", { authString })
-  );
-};
+// ! NOT IN USE
+// export const getAllBodyDetails = async (
+//   latitude: number,
+//   longitude: number,
+//   elevation: number,
+//   fromDate: string,
+//   toDate: string,
+//   time: string
+// ): Promise<any> => {
+//   return await fetchSimple(
+//     `${POSITIONS}/?latitude=${latitude}&longitude=${longitude}&elevation=${elevation}&from_date=${fromDate}&to_date=${toDate}&time=${time}`,
+//     options("GET", { authString })
+//   );
+// };
 
 /**
  * Fetches the position of a specific celestial body given the observer location and time
@@ -53,9 +62,19 @@ export const getBodyDetails = async (
   toDate: string,
   time: string
 ): Promise<any> => {
-  return await fetchSimple(
-    `${POSITIONS}/${body}?latitude=${latitude}&longitude=${longitude}&elevation=${elevation}&from_date=${fromDate}&to_date=${toDate}&time=${time}`,
-    options("GET", { authString })
+  return await axiosSimple(
+    `/${body}`,
+    "GET",
+    undefined,
+    {
+      latitude: latitude,
+      longitude: longitude,
+      elevation: elevation,
+      from_date: fromDate,
+      to_date: toDate,
+      time: time,
+    },
+    POSITIONS
   );
 };
 
@@ -82,7 +101,6 @@ type starChartObject = {
  * @returns {Promise}
  */
 export const postStarChart = async (payload: starChartObject): Promise<any> => {
-  // return await fetchSimple(STAR_CHART, options("POST", { authString, payload }));
   return await axiosSimple(STAR_CHART, "POST", payload);
 };
 
@@ -111,13 +129,15 @@ interface MoonPhaseObject {
  * @returns {Promise}
  */
 export const getMoonPhase = async (payload: MoonPhaseObject): Promise<any> => {
-  return await fetchSimple(MOON_PHASE, options("POST", { authString, payload }));
+  return await axiosSimple(MOON_PHASE, "POST", payload);
 };
+
 /**
  * Allows you to search the API's catalogue for objects
  * @param term
  * @returns {Promise<any>}
  */
+// ! NOT IN USE
 export const getSearch = async (
   term: string
   // match_type?: "fuzzy" | "exact",
