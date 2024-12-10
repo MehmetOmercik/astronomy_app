@@ -23,7 +23,11 @@ const App = () => {
   return (
     <section className="flex min-h-[100vh]">
       <NavBar />
-      <Particles options={particlesOptions as ISourceOptions} init={particlesInit} />
+      <Particles
+        id="tsparticles"
+        options={particlesOptions as ISourceOptions}
+        init={particlesInit}
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/solarSystem" element={<SolarSystemPage />} />

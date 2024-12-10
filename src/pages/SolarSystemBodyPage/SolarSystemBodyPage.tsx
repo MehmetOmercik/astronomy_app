@@ -28,7 +28,7 @@ export const SolarSystemBodyPage: React.FC = () => {
       {solarSystemState === SolarSystemState.PENDING && <h1>Loading, please wait...</h1>}
       {solarSystemState === SolarSystemState.FULFILLED && (
         <div>
-          <h1 className="mb-4 text-center">{title}</h1>
+          <h1 className="mb-4 text-2xl text-center font-medium">{title}</h1>
           {/* <p className="">{description}</p> */}
           <SolarSystemBodyTable className="" headers={headers} rows={rows} />
         </div>

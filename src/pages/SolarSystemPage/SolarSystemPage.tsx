@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { useAppDispatch } from "@app/hooks";
 import {
   setState,
@@ -8,7 +10,6 @@ import {
 } from "@features/SolarSystem/SolarSystemSlice";
 import SolarSystemInfo from "./SolarSystemInfo.json";
 import { getBodyDetails } from "../../utils/http/http";
-import { useNavigate } from "react-router-dom";
 
 export const SolarSystemPage: React.FC = () => {
   const navigate = useNavigate();
@@ -60,14 +61,18 @@ export const SolarSystemPage: React.FC = () => {
     <div className="flex min-w-[calc(100%-150px)] flex-wrap">
       {celestialBodies.map((body) => {
         return (
-          <img
-            key={body.id}
-            className="relative z-10 h-64 w-64 cursor-pointer object-contain mix-blend-difference hover:scale-110"
-            src={`/planetImages/${body.value}.png`}
-            onClick={() =>
-              handleClick(body.id, body.value, body.title, body.description)
-            }
-          />
+          <div className="flex flex-col text-center">
+              <img
+              key={body.id}
+              className={`relative z-10 h-64 w-64 cursor-pointer object-contain mix-blend-difference hover:scale-110`}
+              src={`/planetImages/${body.value}.png`}
+              onClick={() =>
+                handleClick(body.id, body.value, body.title, body.description)
+              }
+            />
+            <p className="text-2xl font-medium">{body.title}</p>
+          </div>
+          
         );
       })}
     </div>

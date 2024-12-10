@@ -59,10 +59,10 @@ export const SolarSystemBodyTable: FC<SolarSystemBodyTableProps> = ({
       </thead>
       <tbody className="">
         <tr className="">
-          <td className="solar-system-table-data">Distance from Earth</td>
-          <td className="solar-system-table-data">Position</td>
-          <td className="solar-system-table-data">Elongation</td>
-          <td className="solar-system-table-data">Magnitude</td>
+          <td className="solar-system-table-column">Distance from Earth</td>
+          <td className="solar-system-table-column">Position</td>
+          <td className="solar-system-table-column">Elongation</td>
+          <td className="solar-system-table-column">Magnitude</td>
         </tr>
         {/*//TODO make rowProps work with type row */}
         {rows.map((row: any, index: number) => (
