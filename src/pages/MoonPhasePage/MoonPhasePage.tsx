@@ -49,7 +49,7 @@ export const MoonPhasePage: FC = () => {
       setMoonPhaseImage(moonPhase.data.imageUrl);
       setMoonState(MoonStatus.FULFILLED);
     } catch (error) {
-      console.log("Something went wrong with star chart call: ", error);
+      console.error("Something went wrong with star chart call: ", error);
       setMoonState(MoonStatus.REJECTED);
     }
   };

@@ -94,7 +94,7 @@ export const StarChartPage: FC = () => {
       });
       starChartDispatch({ type: "UPDATE", property: "state", newValue: StarChartStatus.FULFILLED });
     } catch (error) {
-      console.log("Something went wrong with star chart call: ", error);
+      console.error("Something went wrong with star chart call: ", error);
       starChartDispatch({ type: "UPDATE", property: "state", newValue: StarChartStatus.REJECTED });
     }
   };

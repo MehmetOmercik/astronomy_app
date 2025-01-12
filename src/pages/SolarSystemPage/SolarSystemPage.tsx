@@ -39,7 +39,7 @@ export const SolarSystemPage: React.FC = () => {
         dateFormatted,
         "08:00:00"
       );
-      console.log("bodyposition: ", bodyPosition);
+      // console.log("bodyposition: ", bodyPosition);
       //Dispatches the new title, description and data for the SolarSystemBodyPage
 
       dispatch(updateTable(bodyPosition.data.table));

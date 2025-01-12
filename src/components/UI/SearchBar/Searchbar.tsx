@@ -41,7 +41,7 @@ export const SearchBar: FC = () => {
   }, []);
 
   const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     dispatch(setSearchQuery(e.target.value));
     if (e.target.value !== "") {
       try {
