@@ -66,14 +66,15 @@ table tr td {
 
 .hamburger-container {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 30px;
+  left: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 30px;
   height: 20px;
   cursor: pointer;
+  scale: 1.5;
 }
 
 .hamburger-bar {

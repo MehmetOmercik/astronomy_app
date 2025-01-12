@@ -1,6 +1,6 @@
 export const HomePage: React.FC = () => {
   return (
-    <section className="mt-16 min-w-[calc(100%-150px)] p-8 text-center text-xl leading-[3rem] sm:container flex flex-col gap-y-6">
+    <section className="mt-16 min-w-full p-8 text-center text-xl leading-[3rem] sm:container flex flex-col gap-y-6">
       <p className='text-4xl text-red-400'>Astronomy Website</p>
       <p>Hello, welcome to the homepage of my astronomy web application.</p>
       <p>

@@ -58,17 +58,17 @@ export const SolarSystemPage: React.FC = () => {
   const celestialBodies = SolarSystemInfo;
 
   return (
-    <div className="flex min-w-[calc(100%-150px)] flex-wrap">
+    <div className="flex min-w-[calc(100%-150px)] flex-wrap ml-36">
       {celestialBodies.map((body) => {
         return (
           <div className="flex flex-col text-center">
               <img
-              key={body.id}
-              className={`relative z-10 h-64 w-64 cursor-pointer object-contain mix-blend-difference hover:scale-110`}
-              src={`/planetImages/${body.value}.png`}
-              onClick={() =>
-                handleClick(body.id, body.value, body.title, body.description)
-              }
+                key={body.id}
+                className={`relative z-10 h-64 w-64 cursor-pointer object-contain mix-blend-difference hover:scale-110`}
+                src={`/planetImages/${body.value}.png`}
+                onClick={() =>
+                  handleClick(body.id, body.value, body.title, body.description)
+                }
             />
             <p className="text-2xl font-medium">{body.title}</p>
           </div>

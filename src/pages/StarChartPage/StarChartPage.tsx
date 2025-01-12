@@ -99,7 +99,7 @@ export const StarChartPage: FC = () => {
     }
   };
   return (
-    <section className="container flex min-w-[calc(100%-150px)] gap-x-10 p-5">
+    <section className="container flex min-w-[calc(100%-150px)] gap-x-10 p-5 ml-36">
       <form
         className="flex flex-col gap-y-3 self-start rounded-lg bg-gray-600 p-4"
         onSubmit={handleStarChart}
