@@ -94,12 +94,12 @@ export const MoonPhasePage: FC = () => {
           onChange={setMoonStyle}
           selectClassName="input-class"
         />
-        <button type="submit" className="rounded-xl bg-green-600 p-2 hover:bg-green-400">
+        <button type="submit" className="rounded-xl bg-green-600 p-2 hover:bg-green-400 z-10">
           Generate
         </button>
         {moonPhaseImage && (
           <a
-            className="flex justify-center rounded-xl bg-yellow-700 p-2 hover:bg-yellow-600"
+            className="flex justify-center rounded-xl bg-yellow-700 p-2 hover:bg-yellow-600 z-10"
             href={moonPhaseImage}
             download="starChartImage.png"
             target="_blank"

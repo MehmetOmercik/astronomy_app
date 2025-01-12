@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import {
   HomePage,
@@ -17,12 +17,18 @@ import particlesOptions from "./particles.json";
 import { ISourceOptions } from "tsparticles-engine";
 
 const App = () => {
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
   }, []);
   return (
     <section className="flex min-h-[100vh]">
-      <Sidebar />
+      <Sidebar
+        isSidebarVisible={isSidebarVisible}
+        setIsSidebarVisible={setIsSidebarVisible}
+      />
+      {isSidebarVisible && <div id='overlay' className="overlay" onClick={() => setIsSidebarVisible(false)}></div>}
       <Particles
         id="tsparticles"
         options={particlesOptions as ISourceOptions}

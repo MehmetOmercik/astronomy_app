@@ -1,8 +1,12 @@
-import { FC, Fragment, useState } from "react";
+import React, { FC, Fragment } from "react";
 import { LinkSimple } from "../indexUI";
-export const Sidebar: FC = () => {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
+interface SidebarProps {
+  isSidebarVisible: boolean;
+  setIsSidebarVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const Sidebar: FC<SidebarProps> = ({isSidebarVisible, setIsSidebarVisible}) => {
   return (
     <Fragment>
       {/* Hamburger button */}

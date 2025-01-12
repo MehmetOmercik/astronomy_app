@@ -163,13 +163,13 @@ export const StarChartPage: FC = () => {
         />
         <button
           type="submit"
-          className="max-w-[200px] rounded-xl bg-slate-900 p-2 hover:bg-slate-800"
+          className="max-w-[200px] rounded-xl bg-slate-900 p-2 hover:bg-slate-800 z-10"
         >
           Click here to generate the Star Chart
         </button>
         {starChartData.imageURL && (
           <a
-            className="flex max-w-[200px] justify-center rounded-xl bg-yellow-700 p-2 hover:bg-yellow-600"
+            className="flex max-w-[200px] justify-center rounded-xl bg-yellow-700 p-2 hover:bg-yellow-600 z-10"
             href={starChartData.imageURL}
             download="starChartImage.png"
             target="_blank"
