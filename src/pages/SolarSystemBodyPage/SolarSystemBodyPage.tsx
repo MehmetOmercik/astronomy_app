@@ -2,6 +2,7 @@ import { SolarSystemState } from "@features/SolarSystem/SolarSystemSlice";
 import { useAppSelector } from "@app/hooks";
 import { SolarSystemBodyTable } from "@components/UI/indexUI";
 
+// TODO Add EVENTS API to page!
 export const SolarSystemBodyPage: React.FC = () => {
   // interface SolarSystemState {
   //   title: string;
