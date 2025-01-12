@@ -1,7 +1,6 @@
 import { FC, Fragment, useState } from "react";
 import { LinkSimple } from "../indexUI";
-// import { SearchBar } from "../indexUI";
-export const NavBar: FC = () => {
+export const Sidebar: FC = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   return (
@@ -15,17 +14,16 @@ export const NavBar: FC = () => {
       </div>
         
       }
-      <nav className={`sidebar ${isSidebarVisible ? 'open' : 'closed'}`}>
+      <section className={`sidebar ${isSidebarVisible ? 'open' : 'closed'}`}>
         {/* //TODO Implement debouncing on search bar to prevent spamming requests to backend */}
-        {/* <SearchBar /> */}
         <div className="flex w-full flex-col relative pt-9">
           <button className="absolute top-1 right-4 text-2xl" onClick={() => setIsSidebarVisible(false)}>&lt;&lt;</button>
-          <LinkSimple value="Home" to="/" className="navbar-button" />
-          <LinkSimple value="Solar System" to="/solarSystem" className="navbar-button" />
-          <LinkSimple value="Star Chart" to="/starChart" className="navbar-button" />
-          <LinkSimple value="Moon Phases" to="/moonPhase" className="navbar-button" />
+          <LinkSimple value="Home" to="/" className="sidebar-link" />
+          <LinkSimple value="Solar System" to="/solarSystem" className="sidebar-link" />
+          <LinkSimple value="Star Chart" to="/starChart" className="sidebar-link" />
+          <LinkSimple value="Moon Phases" to="/moonPhase" className="sidebar-link" />
         </div>
-      </nav>
+      </section>
     </Fragment>
   );
 };

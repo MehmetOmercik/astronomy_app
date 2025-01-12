@@ -8,7 +8,7 @@ import {
   MoonPhasePage,
   SearchPage,
 } from "./pages/indexPg";
-import { NavBar } from "@components/UI/indexUI";
+import { Sidebar } from "@components/UI/indexUI";
 
 import Particles from "react-particles";
 import type { Engine } from "tsparticles-engine";
@@ -22,7 +22,7 @@ const App = () => {
   }, []);
   return (
     <section className="flex min-h-[100vh]">
-      <NavBar />
+      <Sidebar />
       <Particles
         id="tsparticles"
         options={particlesOptions as ISourceOptions}

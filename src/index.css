@@ -59,9 +59,24 @@ table tr td {
   display: block;
 }
 
-/*Navbar */
-.navbar-button {
+/*Sidebar */
+.sidebar-link {
   @apply p-3 hover:bg-stone-500;
+}
+
+.sidebar {
+  @apply flex min-w-[150px] flex-col gap-y-2 bg-gray-600;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: translateX(0);
+  transition: transform 0.6s ease;
+  z-index: 100;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
 }
 
 .hamburger-container {
@@ -81,21 +96,6 @@ table tr td {
   width: 100%;
   height: 4px;
   background-color: var(--text-color)
-}
-
-.sidebar {
-  @apply flex min-w-[150px] flex-col gap-y-2 bg-gray-600;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  transform: translateX(0);
-  transition: transform 0.6s ease;
-  z-index: 100;
-}
-
-.sidebar.closed {
-  transform: translateX(-100%);
 }
 
 /*Form classes*/

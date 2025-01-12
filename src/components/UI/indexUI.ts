@@ -1,5 +1,8 @@
+// Searchbar
 export { SearchBar } from "./SearchBar/Searchbar";
-export { NavBar } from "./NavBar/NavBar";
+
+// Sidebar
+export { Sidebar } from "./Sidebar/Sidebar";
 
 //Buttons
 export { LinkSimple } from "./Buttons/Link/Link";
