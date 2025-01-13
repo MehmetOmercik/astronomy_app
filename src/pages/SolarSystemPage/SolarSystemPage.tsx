@@ -58,7 +58,7 @@ export const SolarSystemPage: React.FC = () => {
   const celestialBodies = SolarSystemInfo;
 
   return (
-    <div className="flex min-w-[calc(100%-150px)] flex-wrap ml-36">
+    <div className="flex justify-center flex-wrap sm:ml-20 sm:justify-normal">
       {celestialBodies.map((body) => {
         return (
           <div className="flex flex-col text-center">

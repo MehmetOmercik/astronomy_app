@@ -51,7 +51,7 @@ export const SolarSystemBodyTable: FC<SolarSystemBodyTableProps> = ({
         {headers.map((header: Date, index: number) => {
           const date = new Date(header).toLocaleDateString();
           return (
-            <tr key={index} className="solar-system-table-header flex  justify-center">
+            <tr key={index} className="solar-system-table-header flex justify-center">
               <th className="text-center">{date}</th>
             </tr>
           );

@@ -99,9 +99,9 @@ export const StarChartPage: FC = () => {
     }
   };
   return (
-    <section className="container flex min-w-[calc(100%-150px)] gap-x-10 p-5 ml-36">
+    <section className="flex flex-grow flex-col gap-y-10 gap-x-10 p-5 pr-8 lg:ml-36 lg:flex-row lg:gap-y-0 items-center lg:items-start">
       <form
-        className="flex flex-col gap-y-3 self-start rounded-lg bg-gray-600 p-4"
+        className="flex flex-col gap-y-3 rounded-lg bg-gray-600 p-4 scale-90 min-[450px]:scale-100"
         onSubmit={handleStarChart}
       >
         <fieldset className="fieldset-class">
@@ -178,10 +178,10 @@ export const StarChartPage: FC = () => {
           </a>
         )}
       </form>
-      <section className="mr-20">
+      <section className="flex-grow">
         {starChartData.state === StarChartStatus.PENDING && <h1>Loading, please wait...</h1>}
         {starChartData.state === StarChartStatus.FULFILLED && (
-          <img className="relative z-10 max-w-[700px]" src={starChartData.imageURL} />
+          <img className="lg:w-full lg:min-h-[550px] lg:max-h-[90vh]" src={starChartData.imageURL} />
         )}
         {starChartData.state === StarChartStatus.REJECTED && <p>ERROR: NOT LOADING</p>}
       </section>

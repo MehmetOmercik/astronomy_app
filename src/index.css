@@ -80,6 +80,15 @@ body {
   height: 20px;
   cursor: pointer;
   scale: 1.5;
+  z-index: 20;
+}
+
+@media (max-width: 450px) {
+  .hamburger-container {
+    top: 25px;
+    left:10px;
+    scale: 1;
+  }
 }
 
 .hamburger-bar {

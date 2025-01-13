@@ -14,7 +14,8 @@ export const SolarSystemBodyPage: React.FC = () => {
   //   };
   // }
 
-  //TODO get solarSystemState working for below
+  // TODO get solarSystemState working for below
+  // TODO Make table more responsive!
   const {
     title,
     // description,

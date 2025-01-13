@@ -54,10 +54,10 @@ export const MoonPhasePage: FC = () => {
     }
   };
   return (
-    <section className="flex min-w-[calc(100%-150px)] gap-x-10 p-5 ml-36">
+    <section className="flex flex-grow flex-col gap-y-5 gap gap-x-10 pt-5 sm:p-5 md:ml-36 md:flex-row md:gap-y-0 items-center md:items-start">
       <form
         onSubmit={handleMoonPhase}
-        className="flex flex-col gap-y-3 self-start rounded-lg bg-gray-600 p-4"
+        className="flex flex-col gap-y-3 rounded-lg bg-gray-600 p-4 scale-90 min-[400px]:scale-100"
       >
         <fieldset className="fieldset-class">
           <label>Latitude</label>
@@ -111,7 +111,7 @@ export const MoonPhasePage: FC = () => {
       <div>
         {moonState === MoonStatus.PENDING && <h1>Loading, please wait...</h1>}
         {moonState === MoonStatus.FULFILLED && (
-          <img className="relative z-10" src={moonPhaseImage} />
+          <img src={moonPhaseImage} />
         )}
         {moonState === MoonStatus.REJECTED && <p>ERROR: NOT LOADING</p>}
       </div>
