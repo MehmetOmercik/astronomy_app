@@ -40,7 +40,7 @@ interface SolarSystemBodyTableProps extends HTMLAttributes<HTMLTableElement> {
 export const SolarSystemBodyTable: FC<SolarSystemBodyTableProps> = ({
   headers,
   rows,
-  ...props
+  // ...props
 }) => {
   return (
     // <table {...props}>
