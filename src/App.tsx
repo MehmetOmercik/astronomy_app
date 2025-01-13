@@ -17,11 +17,13 @@ import particlesOptions from "./particles.json";
 import { ISourceOptions } from "tsparticles-engine";
 
 const App = () => {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  // State to set sidebar to visible, if the screen size is lower than the tablet breakpoint (768) then set to false
+  const [isSidebarVisible, setIsSidebarVisible] = useState(window.innerWidth > 768 ? true : false); 
 
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
   }, []);
+
   return (
     <section className="flex min-h-[100vh]">
       <Sidebar

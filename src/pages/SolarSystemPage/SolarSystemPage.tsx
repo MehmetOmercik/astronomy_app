@@ -61,7 +61,7 @@ export const SolarSystemPage: React.FC = () => {
     <div className="flex justify-center flex-wrap sm:ml-20 sm:justify-normal">
       {celestialBodies.map((body) => {
         return (
-          <div className="flex flex-col text-center">
+          <div className="flex flex-col text-center" key={`solar-system-body-${body.id}`}>
               <img
                 key={body.id}
                 className={`relative z-10 h-64 w-64 cursor-pointer object-contain mix-blend-difference hover:scale-110`}
