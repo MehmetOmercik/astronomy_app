@@ -5,6 +5,7 @@ import { SolarSystemStatus } from "@features/SolarSystem/SolarSystemSlice";
 import { useAppSelector } from "@app/hooks";
 import { SolarSystemBodyTable } from "@components/UI/indexUI";
 import { useNavigate } from "react-router-dom";
+import { loadLocalStorageState } from "@utils/localStorage/localStorage";
 
 // TODO Add EVENTS API to page!
 export const SolarSystemBodyPage: React.FC = () => {
@@ -18,6 +19,7 @@ export const SolarSystemBodyPage: React.FC = () => {
   //   };
   // }
 
+  const preloadLocalStorage = loadLocalStorageState()
   // TODO get solarSystemState working for below
   const {
     title,
@@ -25,9 +27,29 @@ export const SolarSystemBodyPage: React.FC = () => {
     table,
     status: solarSystemStatus,
   } = useAppSelector((state: any) => state.solarSystem);
-  const headers = table.header;
-  const rows = table.rows[0].cells;
+  let solarSystemBodyTitle = title
+  // let solarSystemBodyDescription = description
+  let headers = table.header;
+  let rows = table.rows[0].cells;
   const navigate = useNavigate();
+
+  const loadingStatus = solarSystemStatus === SolarSystemStatus.PENDING
+  const rejectedStatus = solarSystemStatus === SolarSystemStatus.REJECTED
+  // Fulfilled status is either the normal status is fulfilled OR local storage status is fulfilled AND normal status is NOT rejected
+  const fulfilledStatus = solarSystemStatus === SolarSystemStatus.FULFILLED || 
+    (
+      preloadLocalStorage?.statusLocalStorage === SolarSystemStatus.FULFILLED && 
+      !rejectedStatus
+    )
+
+
+  // ? Check if table is already stored in localStorage AND there isn't a fetch currently happening / fetch fail...
+  if (preloadLocalStorage && (!loadingStatus || !rejectedStatus)) {
+    headers = preloadLocalStorage.tableLocalStorage.header
+    rows = preloadLocalStorage.tableLocalStorage.rows[0].cells;
+    solarSystemBodyTitle = preloadLocalStorage.titleLocalStorage
+    // solarSystemBodyDescription = preloadLocalStorage.descriptionLocalStorage
+  }
 
   return (
     <Fragment>
@@ -38,15 +60,15 @@ export const SolarSystemBodyPage: React.FC = () => {
         <IoArrowBackCircle />
       </button>
       <section className="my-8 flex flex-grow justify-center">
-        {solarSystemStatus === SolarSystemStatus.PENDING && <h1>Loading, please wait...</h1>}
-        {solarSystemStatus === SolarSystemStatus.FULFILLED && (
+        {loadingStatus && <h1>Loading, please wait...</h1>}
+        {fulfilledStatus && (
           <div>
-            <h1 className="mb-4 text-3xl text-center font-medium">{title}</h1>
+            <h1 className="mb-4 text-3xl text-center font-medium">{solarSystemBodyTitle}</h1>
             {/* <p className="">{description}</p> */}
-            <SolarSystemBodyTable className="" headers={headers} rows={rows} />
+            <SolarSystemBodyTable headers={headers} rows={rows} />
           </div>
         )}
-        {solarSystemStatus === SolarSystemStatus.REJECTED && <p>ERROR: NOT LOADING</p>}
+        {rejectedStatus && <p>ERROR: NOT LOADING</p>}
       </section>
     </Fragment>
   );

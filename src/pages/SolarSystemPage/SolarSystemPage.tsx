@@ -20,16 +20,22 @@ export const SolarSystemPage: React.FC = () => {
     title: string,
     description: string
   ) => {
-    navigate(`./${id}`);
-    dispatch(setStatus(SolarSystemStatus.PENDING));
-
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const dateFormatted = `${year}-${month}-${day}`;
-
     try {
+      // Clear local storage first to remove any existing information
+      localStorage.clear();
+
+      // Navigate to page and dispatch PENDING status
+      navigate(`./${id}`);
+      dispatch(setStatus(SolarSystemStatus.PENDING));
+
+      // Format date to correct value for POST request
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      const dateFormatted = `${year}-${month}-${day}`;
+
+      // Make POST request to astronomy API body details
       const bodyPosition = await getBodyDetails(
         planet,
         51.51,
@@ -40,12 +46,18 @@ export const SolarSystemPage: React.FC = () => {
         "08:00:00"
       );
       // console.log("bodyposition: ", bodyPosition);
-      //Dispatches the new title, description and data for the SolarSystemBodyPage
 
+      //Dispatches the new title, description, data and status for the SolarSystemBodyPage
       dispatch(updateTable(bodyPosition.data.table));
       dispatch(updateTitle(title));
       dispatch(updateDescription(description));
       dispatch(setStatus(SolarSystemStatus.FULFILLED));
+
+      // Saves information to local storage. This is used to cache results for page reloading
+      localStorage.setItem("solarSystemTable", JSON.stringify(bodyPosition.data.table));      
+      localStorage.setItem("solarSystemTitle", JSON.stringify(title));      
+      // localStorage.setItem("solarSystemDescription", JSON.stringify(description));      
+      localStorage.setItem("solarSystemStatus", JSON.stringify(SolarSystemStatus.FULFILLED));
     } catch (error) {
       dispatch(setStatus(SolarSystemStatus.REJECTED));
       console.error(
