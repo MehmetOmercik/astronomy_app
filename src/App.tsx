@@ -18,7 +18,7 @@ import { ISourceOptions } from "tsparticles-engine";
 
 const App = () => {
   // State to set sidebar to visible, if the screen size is lower than the tablet breakpoint (768) then set to false
-  const [isSidebarVisible, setIsSidebarVisible] = useState(window.innerWidth > 768 ? true : false); 
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false); 
 
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
