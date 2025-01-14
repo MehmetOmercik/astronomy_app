@@ -83,7 +83,7 @@ body {
   z-index: 20;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 640px) {
   .hamburger-container {
     top: 25px;
     left:10px;
