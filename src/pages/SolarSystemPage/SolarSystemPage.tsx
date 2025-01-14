@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "@app/hooks";
 import {
-  setState,
+  setStatus,
   updateTitle,
   updateDescription,
   updateTable,
-  SolarSystemState,
+  SolarSystemStatus,
 } from "@features/SolarSystem/SolarSystemSlice";
 import SolarSystemInfo from "./SolarSystemInfo.json";
 import { getBodyDetails } from "../../utils/http/http";
@@ -21,7 +21,7 @@ export const SolarSystemPage: React.FC = () => {
     description: string
   ) => {
     navigate(`./${id}`);
-    dispatch(setState(SolarSystemState.PENDING));
+    dispatch(setStatus(SolarSystemStatus.PENDING));
 
     const date = new Date();
     const year = date.getFullYear();
@@ -45,9 +45,9 @@ export const SolarSystemPage: React.FC = () => {
       dispatch(updateTable(bodyPosition.data.table));
       dispatch(updateTitle(title));
       dispatch(updateDescription(description));
-      dispatch(setState(SolarSystemState.FULFILLED));
+      dispatch(setStatus(SolarSystemStatus.FULFILLED));
     } catch (error) {
-      dispatch(setState(SolarSystemState.REJECTED));
+      dispatch(setStatus(SolarSystemStatus.REJECTED));
       console.error(
         "SolarSystemPage dispatch of title and description or api call has failed: ",
         error

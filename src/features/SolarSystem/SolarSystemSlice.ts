@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface initialStateObject {
-  state: string;
+  status: string | null;
   loading: boolean;
   loaded: boolean;
   error: boolean;
@@ -11,14 +11,14 @@ interface initialStateObject {
   table: object;
 }
 
-export enum SolarSystemState {
+export enum SolarSystemStatus {
   PENDING = "pending",
   FULFILLED = "fulfilled",
   REJECTED = "rejected",
 }
 
 const initialState = {
-  state: "",
+  status: null,
   planet: "earth",
   title: "default title",
   description: "default description",
@@ -93,8 +93,8 @@ const solarSystemSlice = createSlice({
   name: "solarSystem",
   initialState,
   reducers: {
-    setState(state, action: PayloadAction<string>) {
-      state.state = action.payload;
+    setStatus(state, action: PayloadAction<string>) {
+      state.status = action.payload;
     },
     updateTitle(state, action: PayloadAction<string>) {
       state.title = action.payload;
@@ -108,5 +108,5 @@ const solarSystemSlice = createSlice({
   },
 });
 
-export const { setState, updateTitle, updateDescription, updateTable } = solarSystemSlice.actions;
+export const { setStatus, updateTitle, updateDescription, updateTable } = solarSystemSlice.actions;
 export default solarSystemSlice.reducer;

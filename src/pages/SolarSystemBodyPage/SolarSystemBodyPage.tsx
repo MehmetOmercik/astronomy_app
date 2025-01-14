@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 
-import { SolarSystemState } from "@features/SolarSystem/SolarSystemSlice";
+import { SolarSystemStatus } from "@features/SolarSystem/SolarSystemSlice";
 import { useAppSelector } from "@app/hooks";
 import { SolarSystemBodyTable } from "@components/UI/indexUI";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ export const SolarSystemBodyPage: React.FC = () => {
     title,
     // description,
     table,
-    state: solarSystemState,
+    status: solarSystemStatus,
   } = useAppSelector((state: any) => state.solarSystem);
   const headers = table.header;
   const rows = table.rows[0].cells;
@@ -38,15 +38,15 @@ export const SolarSystemBodyPage: React.FC = () => {
         <IoArrowBackCircle />
       </button>
       <section className="my-8 flex flex-grow justify-center">
-        {solarSystemState === SolarSystemState.PENDING && <h1>Loading, please wait...</h1>}
-        {solarSystemState === SolarSystemState.FULFILLED && (
+        {solarSystemStatus === SolarSystemStatus.PENDING && <h1>Loading, please wait...</h1>}
+        {solarSystemStatus === SolarSystemStatus.FULFILLED && (
           <div>
             <h1 className="mb-4 text-3xl text-center font-medium">{title}</h1>
             {/* <p className="">{description}</p> */}
             <SolarSystemBodyTable className="" headers={headers} rows={rows} />
           </div>
         )}
-        {solarSystemState === SolarSystemState.REJECTED && <p>ERROR: NOT LOADING</p>}
+        {solarSystemStatus === SolarSystemStatus.REJECTED && <p>ERROR: NOT LOADING</p>}
       </section>
     </Fragment>
   );
