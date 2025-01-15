@@ -4,18 +4,18 @@ import { DropdownWithLabel } from "@components/UI/indexUI";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+enum MoonStatus {
+  PENDING = "pending",
+  FULFILLED = "fulfilled",
+  REJECTED = "rejected",
+}
+
 export const MoonPhasePage: FC = () => {
   const [latitude, setLatitude] = useState("51.51");
   const [longitude, setLongitude] = useState("0.13");
   const [startDate, setStartDate] = useState(new Date());
   const [moonStyle, setMoonStyle] = useState("Default");
   const [moonPhaseImage, setMoonPhaseImage] = useState("");
-
-  enum MoonStatus {
-    PENDING = "pending",
-    FULFILLED = "fulfilled",
-    REJECTED = "rejected",
-  }
 
   const [moonState, setMoonState] = useState<MoonStatus>();
 

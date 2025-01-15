@@ -6,8 +6,8 @@ import {
   updateTitle,
   updateDescription,
   updateTable,
-  SolarSystemStatus,
 } from "@features/SolarSystem/SolarSystemSlice";
+import { SolarSystemStatus } from "@src/constants";
 import SolarSystemInfo from "./SolarSystemInfo.json";
 import { getBodyDetails } from "../../utils/http/http";
 

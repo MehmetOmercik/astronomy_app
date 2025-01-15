@@ -6,3 +6,9 @@ export enum PageRoutes {
     MOON_PHASE_PAGE = "/moon-phase",
     SEARCH_RESULTS_PAGE = "/search",
 }
+
+export enum SolarSystemStatus {
+  PENDING = "pending",
+  FULFILLED = "fulfilled",
+  REJECTED = "rejected"
+}

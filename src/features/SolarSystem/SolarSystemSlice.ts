@@ -11,12 +11,6 @@ interface initialStateObject {
   table: object;
 }
 
-export enum SolarSystemStatus {
-  PENDING = "pending",
-  FULFILLED = "fulfilled",
-  REJECTED = "rejected",
-}
-
 const initialState = {
   status: null,
   planet: "earth",

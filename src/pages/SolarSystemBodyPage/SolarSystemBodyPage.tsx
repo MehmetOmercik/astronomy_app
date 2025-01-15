@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 
-import { SolarSystemStatus } from "@features/SolarSystem/SolarSystemSlice";
+import { SolarSystemStatus } from "@src/constants";
 import { useAppSelector } from "@app/hooks";
 import { SolarSystemBodyTable } from "@components/UI/indexUI";
 import { useNavigate } from "react-router-dom";
