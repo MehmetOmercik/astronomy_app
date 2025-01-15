@@ -99,15 +99,15 @@ body {
 
 /*Table classes*/
 .solar-system-table-header {
-  @apply border border-gray-500 p-3 pr-5 hover:bg-slate-800;
+  @apply border border-gray-500 p-3 pr-5 md:hover:bg-slate-800;
 }
 
 .solar-system-table-column {
-  @apply border border-gray-500 p-3 pr-5 font-semibold hover:bg-slate-800;
+  @apply border border-gray-500 p-3 pr-5 font-semibold md:hover:bg-slate-800;
 }
 
 .solar-system-table-data {
-  @apply border border-gray-500 p-3 pr-5 hover:bg-slate-800;
+  @apply border border-gray-500 p-3 pr-5 md:hover:bg-slate-800;
 }
 
 table tr {

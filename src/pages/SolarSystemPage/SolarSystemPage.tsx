@@ -76,7 +76,7 @@ export const SolarSystemPage: React.FC = () => {
           <div className="flex flex-col text-center" key={`solar-system-body-${body.id}`}>
               <img
                 key={body.id}
-                className={`relative z-10 h-64 w-64 cursor-pointer object-contain mix-blend-difference hover:scale-110`}
+                className={`relative z-10 h-64 w-64 object-contain mix-blend-difference md:hover:scale-[1.17] md:cursor-pointer transition-transform duration-700`}
                 src={`/planetImages/${body.value}.png`}
                 onClick={() =>
                   handleClick(body.id, body.value, body.title, body.description)
