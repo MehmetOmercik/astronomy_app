@@ -6,7 +6,6 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
       "@app/*": ["src/app/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
@@ -14,7 +13,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
       "@test/*": ["src/test/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@src/*": ["src/*"],
     },
 
     /* Bundler mode */

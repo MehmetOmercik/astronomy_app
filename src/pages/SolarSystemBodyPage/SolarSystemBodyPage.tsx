@@ -6,6 +6,7 @@ import { useAppSelector } from "@app/hooks";
 import { SolarSystemBodyTable } from "@components/UI/indexUI";
 import { useNavigate } from "react-router-dom";
 import { loadLocalStorageState } from "@utils/localStorage/localStorage";
+import { PageRoutes } from "@src/constants";
 
 // TODO Add EVENTS API to page!
 export const SolarSystemBodyPage: React.FC = () => {
@@ -55,7 +56,7 @@ export const SolarSystemBodyPage: React.FC = () => {
     <Fragment>
       <button 
         className="absolute top-12 left-1 text-5xl min-[345px]:top-3 min-[345px]:left-12 sm:top-2 sm:left-32 sm:text-7xl"
-        onClick={() => navigate('/solarSystem')}
+        onClick={() => navigate(PageRoutes.SOLAR_SYSTEM_PAGE)}
       >
         <IoArrowBackCircle />
       </button>

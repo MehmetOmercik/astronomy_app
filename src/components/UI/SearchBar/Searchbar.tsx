@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useRef, useEffect, MouseEvent } from "react";
 import { getSearch } from "@utils/http/http";
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { useAppDispatch, useAppSelector } from "@app/hooks";
 import {
   setSearchQuery,
   setSearchList,

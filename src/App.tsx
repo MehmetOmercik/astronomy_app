@@ -1,14 +1,5 @@
 import { useCallback, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import {
-  HomePage,
-  SolarSystemPage,
-  SolarSystemBodyPage,
-  StarChartPage,
-  MoonPhasePage,
-  SearchPage,
-} from "./pages/indexPg";
-import { Sidebar } from "@components/UI/indexUI";
 
 import Particles from "react-particles";
 import type { Engine } from "tsparticles-engine";
@@ -16,8 +7,20 @@ import { loadFull } from "tsparticles";
 import particlesOptions from "./particles.json";
 import { ISourceOptions } from "tsparticles-engine";
 
+import {
+  HomePage,
+  SolarSystemPage,
+  SolarSystemBodyPage,
+  StarChartPage,
+  MoonPhasePage,
+  // SearchPage,
+} from "./pages/indexPg";
+import { Sidebar } from "@components/UI/indexUI";
+import { PageRoutes } from "./constants";
+
+
+
 const App = () => {
-  // State to set sidebar to visible, if the screen size is lower than the tablet breakpoint (768) then set to false
   const [isSidebarVisible, setIsSidebarVisible] = useState(false); 
 
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -37,13 +40,13 @@ const App = () => {
         init={particlesInit}
       />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/solarSystem" element={<SolarSystemPage />} />
-        <Route path={`/solarSystem/:id`} element={<SolarSystemBodyPage />} />
-        <Route path="/starChart" element={<StarChartPage />} />
-        <Route path="/moonPhase" element={<MoonPhasePage />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path={PageRoutes.HOMEPAGE} element={<HomePage />} />
+        <Route path={PageRoutes.SOLAR_SYSTEM_PAGE} element={<SolarSystemPage />} />
+        <Route path={PageRoutes.SOLAR_SYSTEM_BODY_PAGE} element={<SolarSystemBodyPage />} />
+        <Route path={PageRoutes.STAR_CHART_PAGE} element={<StarChartPage />} />
+        <Route path={PageRoutes.MOON_PHASE_PAGE} element={<MoonPhasePage />} />
+        {/* <Route path={PageRoutes.SEARCH_RESULTS_PAGE} element={<SearchPage />} /> */}
+        <Route path="*" element={<Navigate to={PageRoutes.HOMEPAGE} />} />
       </Routes>
     </section>
   );
