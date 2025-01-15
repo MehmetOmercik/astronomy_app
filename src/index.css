@@ -130,6 +130,10 @@ table tr td {
 
 Must give a z-index higher than the other components for the dropper
 */
+.react-datepicker {
+  @apply scale-110
+}
+
 .react-datepicker-wrapper, .react-datepicker-popper {
   @apply z-20
 }
