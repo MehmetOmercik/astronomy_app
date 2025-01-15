@@ -1,6 +1,6 @@
 // Function to load Local storage, may need to consider redux-persist if this file gets too big
 
-import { SolarSystemStatus } from "@/features/SolarSystem/SolarSystemSlice";
+import { SolarSystemStatus } from "@src/constants";
 
 type LoadLocalStorageStateResult = {
     tableLocalStorage: {
