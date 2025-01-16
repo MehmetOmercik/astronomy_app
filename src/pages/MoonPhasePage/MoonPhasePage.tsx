@@ -57,7 +57,7 @@ export const MoonPhasePage: FC = () => {
     <section className="flex flex-grow flex-col gap-y-5 gap gap-x-10 pt-5 sm:p-5 md:ml-36 md:flex-row md:gap-y-0 items-center md:items-start">
       <form
         onSubmit={handleMoonPhase}
-        className="flex flex-col gap-y-3 rounded-lg bg-gray-600 p-4 scale-90 min-[400px]:scale-100"
+        className="form-class"
       >
         <fieldset className="fieldset-class">
           <label>Latitude</label>

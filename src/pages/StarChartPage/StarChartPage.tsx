@@ -101,7 +101,7 @@ export const StarChartPage: FC = () => {
   return (
     <section className="flex flex-grow flex-col gap-y-10 gap-x-10 p-5 pr-8 lg:ml-36 lg:flex-row lg:gap-y-0 items-center lg:items-start">
       <form
-        className="flex flex-col gap-y-3 rounded-lg bg-gray-600 p-4 scale-90 min-[450px]:scale-100"
+        className="form-class"
         onSubmit={handleStarChart}
       >
         <fieldset className="fieldset-class">

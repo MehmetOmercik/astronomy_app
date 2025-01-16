@@ -118,6 +118,10 @@ table tr td {
 }
 
 /*Form classes*/
+.form-class {
+  @apply flex flex-col gap-y-3 rounded-lg bg-gray-600 p-4 scale-90 min-[450px]:scale-100 z-10
+}
+
 .fieldset-class {
   @apply flex flex-col;
 }
