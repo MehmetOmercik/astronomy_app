@@ -11,7 +11,8 @@ export { SearchBar } from "./SearchBar/Searchbar";
 // Sidebar
 export { Sidebar } from "./Sidebar/Sidebar";
 
-
-
 // Table
 export { SolarSystemBodyTable } from "./Tables/SolarSystemBodyTable/SolarSystemBodyTable";
+
+// Tooltip
+export { Tooltip }from "./Tooltip/Tooltip";

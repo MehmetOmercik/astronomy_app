@@ -1,3 +1,4 @@
+import { Tooltip } from "@components/UI/indexUI";
 import { FC, Fragment, HTMLAttributes } from "react";
 
 interface SolarSystemBodyTableProps extends HTMLAttributes<HTMLTableElement> {
@@ -99,15 +100,67 @@ export const SolarSystemBodyTable: FC<SolarSystemBodyTableProps> = ({
       })}
       {rows.map((row: any, index: number) => (
         <Fragment key={`solar-system-row-${index}`}>
-          <div className="solar-system-table-data">Distance from Earth</div>
-          <div className="solar-system-table-data">{row.distance.fromEarth.au} au / {row.distance.fromEarth.km} km</div>
-          <div className="solar-system-table-data">Position</div>
-          <div className="solar-system-table-data">{row.position.equatorial.rightAscension.string} rh AND{" "}
-               {row.position.equatorial.declination.string}
+          <div className="solar-system-table-column-header">
+            <p>Distance from Earth</p>
+            <Tooltip 
+              message='Measured in AU (Astronomical Units) where 1 AU equals the average distance between the Sun and the Earth which is 150 million km (93 million miles)'
+              id={0}
+            />
           </div>
-          <div className="solar-system-table-data">Elongation</div>
-          <div className="solar-system-table-data">{row.extraInfo.elongation ? row.extraInfo.elongation : "null"}</div>
-          <div className="solar-system-table-data rounded-bl-xl">Magnitude</div>
+          <div className="solar-system-table-data">{row.distance.fromEarth.au} AU / {row.distance.fromEarth.km} km</div>
+          <div className="solar-system-table-column-header">
+            Position
+            <Tooltip 
+              message={
+                <Fragment>
+                  <p>RA is Right Ascension which is the celestial equivalent of longitude. It is measured in hours minutes and seconds where 0 hours is the vernal equinox.</p>
+                  <br />
+                  <p>Dec is declination and is the celestial equivalent of latitude. It is measured in degrees, arcminutes and arcseconds where 0° is the equator, 90° is the north celestial pole and -90° is the south celestial pole.</p>
+                </Fragment>
+              } 
+              id={1}
+            />
+          </div>
+          <div className="solar-system-table-data">
+            <span className="whitespace-nowrap">{row.position.equatorial.rightAscension.string} RA</span>
+            <br />
+            <span className="whitespace-nowrap">{row.position.equatorial.declination.string} DEC</span>
+          </div>
+          <div className="solar-system-table-column-header">
+            <p>Elongation</p>
+            <Tooltip 
+              message={
+                <Fragment>
+                  <p>
+                    Elongation refers to the maximum angular separation between a celestial body and the Sun, with the Earth used as a reference point.
+                  </p>
+                  <br />
+                  <p>
+                    I.e. if a planet had a 90° elongation then it means that it makes a right angled triangle with the Earth. This position is known as a Quadrature.
+                  </p>
+                </Fragment>
+              } 
+              id={2}
+            />
+          </div>
+          <div className="solar-system-table-data">{row.extraInfo.elongation ? `${row.extraInfo.elongation}°` : "null"}</div>
+          <div className="solar-system-table-column-header rounded-bl-xl">
+            <p>Magnitude</p>
+            <Tooltip 
+              message={
+                <Fragment>
+                  <p>
+                    Magnitude relates to how bright a celestial object is where the more negative the number, the brighter the object.
+                  </p>
+                  <br />
+                  <p>
+                    I.e. The Sun has a magnitude of -26.7, a full moon is -11 and the brightest star in the sky, Sirius, is about -1.5. 
+                  </p>
+                </Fragment>
+              } 
+              id={3}
+            />
+          </div>
           <div className="solar-system-table-data rounded-br-xl">{row.extraInfo.magnitude ? row.extraInfo.magnitude : "null"}</div>
         </Fragment>
       ))}

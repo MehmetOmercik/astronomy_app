@@ -102,8 +102,8 @@ body {
   @apply border border-gray-500 p-3 pr-5 md:hover:bg-slate-800;
 }
 
-.solar-system-table-column {
-  @apply border border-gray-500 p-3 pr-5 font-semibold md:hover:bg-slate-800;
+.solar-system-table-column-header {
+  @apply relative flex items-center gap-x-2 border border-gray-500 p-3 pr-5 font-semibold md:hover:bg-slate-800;
 }
 
 .solar-system-table-data {
