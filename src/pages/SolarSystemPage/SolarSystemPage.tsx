@@ -70,23 +70,26 @@ export const SolarSystemPage: React.FC = () => {
   const celestialBodies = SolarSystemInfo;
 
   return (
-    <div className="flex justify-center flex-wrap sm:ml-20 sm:justify-normal">
-      {celestialBodies.map((body) => {
-        return (
-          <div className="flex flex-col text-center" key={`solar-system-body-${body.id}`}>
-              <img
-                key={body.id}
-                className={`relative z-10 h-64 w-64 object-contain mix-blend-difference md:hover:scale-[1.17] md:cursor-pointer transition-transform duration-700`}
-                src={`/planetImages/${body.value}.png`}
-                onClick={() =>
-                  handleClick(body.id, body.value, body.title, body.description)
-                }
-            />
-            <p className="text-2xl font-medium">{body.title}</p>
-          </div>
-          
-        );
-      })}
-    </div>
-  );
+    <section>
+      <h1 className="text-center text-xl mt-12 mx-auto w-3/4 sm:text-3xl ">Click on the images below to see more details about each celestial body</h1>
+      <div className="flex justify-center flex-wrap sm:ml-20 sm:justify-normal mb-8">
+        {celestialBodies.map((body) => {
+          return (
+            <div className="flex flex-col text-center" key={`solar-system-body-${body.id}`}>
+                <img
+                  key={body.id}
+                  className={`relative z-10 h-64 w-64 object-contain mix-blend-difference md:hover:scale-[1.17] md:cursor-pointer transition-transform duration-700`}
+                  src={`/planetImages/${body.value}.png`}
+                  onClick={() =>
+                    handleClick(body.id, body.value, body.title, body.description)
+                  }
+              />
+              <p className="text-2xl font-medium">{body.title}</p>
+            </div>
+            
+          );
+        })}
+      </div>
+    </section>
+  )
 };
